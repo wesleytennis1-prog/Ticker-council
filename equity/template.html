@@ -1,0 +1,428 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a trading-desk dossier. Verdict strip on top, then council -> price fan -> seats -> debate -> business check -> books. Dark-first. */
+:root {
+  --bg: #0e1215; --panel: #151a1f; --panel-2: #1b2127; --line: #262e35;
+  --fg: #e4e8eb; --muted: #8b959e; --faint: #5d6770;
+  --up: #3fbf86; --up-bg: rgba(63,191,134,.13); --down: #e8655e; --down-bg: rgba(232,101,94,.14);
+  --even: #d6a640; --even-bg: rgba(214,166,64,.14); --accent: #74a7ff; --m3: #a98bff; --yr: #f0a35a; --wk: #4cc6d8;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  --bg: #f3f5f6; --panel: #ffffff; --panel-2: #f5f7f8; --line: #dde2e6;
+  --fg: #12181c; --muted: #5a6670; --faint: #8d979f;
+  --up: #17895a; --up-bg: rgba(23,137,90,.1); --down: #c43b35; --down-bg: rgba(196,59,53,.1);
+  --even: #9a6f0c; --even-bg: rgba(154,111,12,.12); --accent: #2d68d0; --m3: #6f4fd6; --yr: #c56b17; --wk: #128a9b;
+  color-scheme: light; } }
+:root[data-theme="light"] {
+  --bg: #f3f5f6; --panel: #ffffff; --panel-2: #f5f7f8; --line: #dde2e6;
+  --fg: #12181c; --muted: #5a6670; --faint: #8d979f;
+  --up: #17895a; --up-bg: rgba(23,137,90,.1); --down: #c43b35; --down-bg: rgba(196,59,53,.1);
+  --even: #9a6f0c; --even-bg: rgba(154,111,12,.12); --accent: #2d68d0; --m3: #6f4fd6; --yr: #c56b17; --wk: #128a9b;
+  color-scheme: light; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--f-body); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px; }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+h2 { font-size: 1.2rem; }
+.mono, .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.eyebrow { font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; min-width: 0; }
+.panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.panel-head .hint { font-size: .8rem; color: var(--muted); }
+.up { color: var(--up); } .down { color: var(--down); } .even { color: var(--even); }
+.sample { background: var(--even-bg); color: var(--even); border: 1px solid var(--even); border-radius: 8px; padding: 8px 12px; font-size: .85rem; }
+
+/* Verdict strip */
+.verdict { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 20px; align-items: start; }
+.ticker-line { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.ticker-line h1 { font-size: 2.6rem; line-height: 1; }
+.ticker-line .co { color: var(--muted); font-size: 1rem; }
+.price-line { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; margin-top: 10px; }
+.price-line .px { font: 600 2rem var(--f-mono); }
+.thesis { margin: 14px 0 0; max-width: 62ch; }
+.call-card { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.call-card > div { background: var(--panel-2); padding: 12px 14px; }
+.call-card .v { font: 600 1.15rem var(--f-mono); }
+.rating { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; }
+.rating .big { font: 700 1.9rem var(--f-display); letter-spacing: .02em; }
+.position { margin-top: 12px; border-left: 3px solid var(--accent); padding: 8px 12px; background: var(--panel-2); border-radius: 0 8px 8px 0; font-size: .9rem; }
+
+/* Council */
+.hz { display: grid; grid-template-columns: 150px minmax(0,1fr) 190px; gap: 18px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line); }
+.hz:first-of-type { border-top: 0; }
+.hz .name { font-weight: 600; } .hz .sc { font-size: .8rem; color: var(--muted); }
+.track-wrap { position: relative; }
+.track { position: relative; height: 8px; background: var(--panel-2); border-radius: 4px; }
+.track .mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: var(--faint); }
+.track .bar { position: absolute; top: 0; bottom: 0; border-radius: 4px; }
+.dots { position: relative; margin-top: 8px; }
+.dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; transform: translateX(-50%); }
+.axis { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); }
+.lean { text-align: right; } .lean .l { font: 700 1.35rem var(--f-display); } .lean .s { font-size: .8rem; color: var(--muted); }
+
+/* Fan chart */
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { background: transparent; color: var(--muted); border: 0; padding: 6px 12px; font: 500 .82rem var(--f-body); cursor: pointer; display: flex; gap: 6px; align-items: center; }
+.seg button[aria-pressed="true"] { background: var(--panel-2); color: var(--fg); }
+.seg button:focus-visible, .seat:focus-visible, .seat button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.chart-box { overflow-x: auto; }
+.chart-box svg { display: block; width: 100%; min-width: 620px; height: auto; }
+.cap { font-size: .8rem; color: var(--muted); margin: 10px 0 0; max-width: 90ch; }
+
+/* Seats */
+.seats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.seat { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.seat h3 { font: 600 .98rem var(--f-body); display: flex; align-items: center; gap: 8px; }
+.seat .feed { font-size: .75rem; color: var(--muted); }
+.chips { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 6px; }
+.chip { font-size: .74rem; border-radius: 6px; padding: 4px 6px; text-align: center; white-space: nowrap; }
+.chip .k { color: var(--muted); margin-right: 4px; }
+.chip.up { background: var(--up-bg); } .chip.down { background: var(--down-bg); } .chip.even { background: var(--even-bg); }
+.seat p { margin: 0; font-size: .88rem; }
+.seat .sum { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.seat.open .sum { display: block; }
+.seat .detail { display: none; font-size: .84rem; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 8px; }
+.seat.open .detail { display: block; }
+.seat button { justify-self: start; background: none; border: 0; color: var(--accent); font: 500 .8rem var(--f-body); cursor: pointer; padding: 0; }
+
+/* Debate */
+.debate { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.side { border-radius: 10px; padding: 14px 16px; border: 1px solid var(--line); background: var(--panel-2); min-width: 0; }
+.side.bull { border-top: 3px solid var(--up); } .side.bear { border-top: 3px solid var(--down); }
+.side.chal { border-top: 3px solid var(--even); } .side.judge { border-top: 3px solid var(--accent); }
+.side h3 { font: 600 .95rem var(--f-body); display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.side ul { margin: 0; padding-left: 18px; font-size: .9rem; } .side p { margin: 0; font-size: .9rem; }
+
+/* Business check */
+.biz { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 28px; }
+.pill { font-size: .75rem; font-weight: 600; border-radius: 999px; padding: 3px 10px; }
+.pill.good { background: var(--up-bg); color: var(--up); } .pill.warn { background: var(--even-bg); color: var(--even); } .pill.bad { background: var(--down-bg); color: var(--down); }
+.kv { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px solid var(--line); font-size: .9rem; }
+.kv .v { font-family: var(--f-mono); text-align: right; }
+.kv .v.good { color: var(--up); } .kv .v.warn { color: var(--even); } .kv .v.bad { color: var(--down); }
+.gauge { position: relative; height: 10px; border-radius: 5px; background: linear-gradient(90deg, var(--up), var(--even), var(--down)); margin: 16px 0 6px; }
+.gauge .mk { position: absolute; top: -5px; width: 4px; height: 20px; background: var(--fg); border-radius: 2px; transform: translateX(-50%); box-shadow: 0 0 0 2px var(--panel); }
+.gauge-ax { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); margin-bottom: 10px; }
+.big-growth { font: 700 1.9rem var(--f-display); color: var(--up); }
+
+/* Tables */
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .86rem; }
+th, td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--muted); font-weight: 600; font-size: .76rem; letter-spacing: .04em; text-transform: uppercase; }
+td { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+td:first-child { font-family: var(--f-body); }
+tr.subject td { background: var(--panel-2); font-weight: 600; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+.heat td.hc { color: var(--fg); }
+.foot { font-size: .78rem; color: var(--muted); }
+.foot a { color: var(--accent); }
+ol.src { margin: 0; padding-left: 20px; font-size: .85rem; columns: 2; column-gap: 28px; }
+ol.src a { color: var(--accent); word-break: break-word; }
+
+@media (max-width: 860px) {
+  .verdict, .biz, .grid2, .debate { grid-template-columns: minmax(0,1fr); }
+  .seats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .hz { grid-template-columns: minmax(0,1fr) auto; }
+  .hz .track-wrap { grid-column: 1 / -1; grid-row: 2; }
+  ol.src { columns: 1; }
+}
+@media (max-width: 560px) { .seats { grid-template-columns: minmax(0,1fr); } .ticker-line h1 { font-size: 2rem; } }
+@media (prefers-reduced-motion: no-preference) { .track .bar { transition: width .6s ease; } }
+</style>
+
+<script id="data" type="application/json">__DATA__</script>
+<div class="wrap" id="app"></div>
+
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const M = D.meta, CUR = M.currency_symbol || '$';
+const $ = (h) => { const t = document.createElement('template'); t.innerHTML = h.trim(); return t.content.firstElementChild; };
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const px = (v, d = 2) => v == null ? '–' : CUR + Number(v).toLocaleString('en-GB', {minimumFractionDigits: d, maximumFractionDigits: d});
+const pct = (v, d = 1, sign = true) => v == null ? '–' : (sign && v > 0 ? '+' : '') + (v * 100).toFixed(d) + '%';
+const cls = (v) => v > 0 ? 'up' : v < 0 ? 'down' : 'even';
+const arrow = { up: '▲', down: '▼', even: '●' };
+const HZ = [['week', 'Week', 'var(--wk)'], ['m3', '3 mo', 'var(--m3)'], ['year', 'Year', 'var(--yr)']];
+const app = document.getElementById('app');
+
+/* ---------- Verdict strip ---------- */
+(function verdict() {
+  const C = D.call, rc = { BUY: 'up', SELL: 'down', HOLD: 'even' }[C.rating];
+  const sgd = M.sgd_rate ? `<span class="muted mono">≈ S$${(M.price * M.sgd_rate).toFixed(2)}</span>` : '';
+  const pos = D.position ? `<div class="position"><span class="eyebrow">Your position</span><br>${esc(D.position.text)}</div>` : '';
+  app.append($(`<section class="panel">
+    ${M.sample ? '<div class="sample" style="margin-bottom:14px">Sample numbers for a layout preview. Not a real company.</div>' : ''}
+    <div class="verdict">
+      <div>
+        <div class="eyebrow">${esc(M.exchange)} · ${esc(M.sector || '')} · as of ${esc(M.asof)} · ${esc(M.quote_status)}</div>
+        <div class="ticker-line"><h1>${esc(M.ticker)}</h1><span class="co">${esc(M.name)}</span></div>
+        <div class="price-line"><span class="px">${px(M.price)}</span>
+          <span class="mono ${cls(M.change_pct)}">${pct(M.change_pct, 2)} today</span>${sgd}</div>
+        <p class="thesis">${esc(C.thesis)}</p>${pos}
+      </div>
+      <div class="call-card">
+        <div class="rating"><div><div class="eyebrow">Rating</div><div class="big ${rc}">${C.rating}</div></div>
+          <div style="text-align:right"><div class="eyebrow">Conviction</div><div class="v">${esc(C.conviction)}</div></div></div>
+        <div><div class="eyebrow">12m target</div><div class="v">${px(C.target)}</div></div>
+        <div><div class="eyebrow">Upside</div><div class="v ${cls(C.target / M.price - 1)}">${pct(C.target / M.price - 1)}</div></div>
+        <div><div class="eyebrow">Fair value</div><div class="v">${px(D.valuation.blended_fair_value)}</div></div>
+        <div><div class="eyebrow">Good entry (−20%)</div><div class="v">${px(D.valuation.blended_fair_value * 0.8)}</div></div>
+      </div>
+    </div></section>`));
+})();
+
+/* ---------- Council position ---------- */
+(function councilPanel() {
+  const p = $(`<section class="panel"><div class="panel-head"><h2>The Council's position</h2><span class="hint">Where the price is likely to go. Each dot is one seat.</span></div></section>`);
+  D.council.forEach(h => {
+    const color = h.score > 0.08 ? 'var(--up)' : h.score < -0.08 ? 'var(--down)' : 'var(--even)';
+    const w = Math.min(Math.abs(h.score), 1) * 50;
+    const left = h.score >= 0 ? 50 : 50 - w;
+    // stack dots that land in the same 3% bucket
+    const buckets = {};
+    const dots = D.seats.map(s => {
+      const v = s.votes[h.key], x = 50 + Math.max(-1, Math.min(1, v.score)) * 50;
+      const b = Math.round(x / 3); buckets[b] = (buckets[b] || 0) + 1;
+      return `<span class="dot" title="${esc(s.name)}: ${v.vote} (${v.score.toFixed(2)})" style="left:${x}%;top:${(buckets[b] - 1) * 11}px;background:var(--${v.vote})"></span>`;
+    });
+    const hgt = Math.max(...Object.values(buckets)) * 11;
+    p.append($(`<div class="hz">
+      <div><div class="name">${h.label}</div><div class="sc">${h.scored}</div></div>
+      <div class="track-wrap"><div class="track"><span class="bar" style="left:${left}%;width:${w}%;background:${color}"></span><span class="mid"></span></div>
+        <div class="dots" style="height:${hgt}px">${dots.join('')}</div>
+        <div class="axis"><span>◀ Down</span><span>Even</span><span>Up ▶</span></div></div>
+      <div class="lean"><div class="l" style="color:${color}">${h.lean}</div><div class="s">${h.sub}</div><div class="s">${h.agree} of ${h.total} seats agree</div></div>
+    </div>`));
+  });
+  app.append(p);
+})();
+
+/* ---------- Price + forecast fan ---------- */
+(function fanPanel() {
+  const P = D.price, F = P.fans;
+  const p = $(`<section class="panel"><div class="panel-head"><h2>Price</h2>
+    <div class="seg" role="group" aria-label="Forecast horizon">${HZ.map(([k, l, c]) =>
+      `<button data-k="${k}" aria-pressed="${k === 'year'}"><span class="sw" style="background:${c}"></span>${l}</button>`).join('')}</div></div>
+    <div class="chart-box"></div>
+    <p class="cap">Shaded fans are the council's forecast: for each horizon, the range with a 70% chance of holding the price, widening as time passes. ▲ and ▼ mark the bull and bear advocates' prices from the debate. History from ${esc(P.source || 'IBKR')}.</p></section>`);
+  const box = p.querySelector('.chart-box');
+  const hist = P.history.map(([d, c]) => [new Date(d), c]);
+  const t0 = new Date(M.asof.slice(0, 10)), t1 = new Date(F.year.date);
+  const W = 960, H = 340, L = 56, R = 170, T = 24, B = 34;
+  const xs = hist[0][0].getTime(), xe = t1.getTime();
+  const x = (t) => L + (t.getTime() - xs) / (xe - xs) * (W - L - R);
+  const vals = hist.map(h => h[1]).concat([F.year.lo, F.year.hi, P.bull_price, P.bear_price]);
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.06; lo -= pad; hi += pad;
+  const y = (v) => T + (hi - v) / (hi - lo) * (H - T - B);
+  const step = Math.pow(10, Math.floor(Math.log10((hi - lo) / 4)));
+  const tick = [1, 2, 2.5, 5, 10].map(m => m * step).find(s => (hi - lo) / s <= 6);
+  const grid = []; for (let v = Math.ceil(lo / tick) * tick; v <= hi; v += tick) grid.push(v);
+  const months = []; const m0 = new Date(xs); m0.setDate(1);
+  for (let d = new Date(m0.getFullYear(), m0.getMonth() + 1, 1); d <= t1; d.setMonth(d.getMonth() + 3)) months.push(new Date(d));
+  const line = hist.map((h, i) => `${i ? 'L' : 'M'}${x(h[0]).toFixed(1)},${y(h[1]).toFixed(1)}`).join('');
+  const area = line + `L${x(hist.at(-1)[0])},${H - B}L${x(hist[0][0])},${H - B}Z`;
+  const fanPath = (f) => { // sqrt(t) widening from today
+    const n = 24, up = [], dn = [], mid = [];
+    const span = new Date(f.date) - t0;
+    for (let i = 0; i <= n; i++) {
+      const fr = i / n, t = new Date(t0.getTime() + span * fr), s = Math.sqrt(fr);
+      const m = M.price * Math.pow(f.mid / M.price, fr);
+      up.push([x(t), y(m * Math.pow(f.hi / f.mid, s))]); dn.push([x(t), y(m * Math.pow(f.lo / f.mid, s))]); mid.push([x(t), y(m)]);
+    }
+    const pth = (a) => a.map((q, i) => `${i ? 'L' : 'M'}${q[0].toFixed(1)},${q[1].toFixed(1)}`).join('');
+    return { band: pth(up) + dn.reverse().map(q => `L${q[0].toFixed(1)},${q[1].toFixed(1)}`).join('') + 'Z', up: pth(up), dn: pth(dn.reverse()), mid: pth(mid) };
+  };
+  const render = (sel) => {
+    const fanSvg = HZ.slice().reverse().map(([k, , c]) => {
+      const f = fanPath(F[k]), on = k === sel;
+      return `<g opacity="${on ? 1 : .35}"><path d="${f.band}" fill="${c}" fill-opacity="${on ? .16 : .07}"/>
+        <path d="${f.up}" fill="none" stroke="${c}" stroke-dasharray="5 4" stroke-width="1.3"/>
+        <path d="${f.dn}" fill="none" stroke="${c}" stroke-dasharray="5 4" stroke-width="1.3"/>
+        <path d="${f.mid}" fill="none" stroke="${c}" stroke-dasharray="2 4" stroke-width="2"/></g>`;
+    }).join('');
+    const f = F[sel], c = HZ.find(h => h[0] === sel)[2], xe2 = x(new Date(f.date));
+    // right-hand labels, nudged apart
+    let labs = [
+      { v: P.bull_price, t: `▲ ${px(P.bull_price, 0)}`, c: 'var(--up)', note: 'bull advocate' },
+      { v: f.hi, t: `Bull ${px(f.hi, 0)}`, c },
+      { v: f.mid, t: `Likely ${px(f.mid, 0)}`, c, fill: true },
+      { v: f.lo, t: `Bear ${px(f.lo, 0)}`, c },
+      { v: P.bear_price, t: `▼ ${px(P.bear_price, 0)}`, c: 'var(--down)', note: 'bear advocate' },
+    ].sort((a, b) => b.v - a.v).map(l => ({ ...l, yy: y(l.v) }));
+    for (let i = 1; i < labs.length; i++) if (labs[i].yy - labs[i - 1].yy < 22) labs[i].yy = labs[i - 1].yy + 22;
+    const lx = W - R + 18;
+    const labSvg = labs.map(l => `<g><rect x="${lx}" y="${l.yy - 10}" width="${l.note ? 76 : 98}" height="20" rx="6" fill="${l.fill ? c : 'var(--panel)'}" fill-opacity="${l.fill ? .9 : 1}" stroke="${l.c}"/>
+      <text x="${lx + 8}" y="${l.yy + 4}" font-size="11.5" font-family="var(--f-mono)" fill="${l.fill ? 'var(--bg)' : l.c}" font-weight="600">${l.t}</text></g>`).join('');
+    box.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Price history with forecast bands">
+      <defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--up)" stop-opacity=".22"/><stop offset="1" stop-color="var(--up)" stop-opacity="0"/></linearGradient></defs>
+      ${grid.map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--f-mono)">${CUR}${v.toFixed(tick < 1 ? 1 : 0)}</text>`).join('')}
+      ${months.map(d => `<text x="${x(d)}" y="${H - 12}" text-anchor="middle" font-size="11" fill="var(--muted)">${d.toLocaleDateString('en-GB', { month: 'short', year: '2-digit' })}</text>`).join('')}
+      <path d="${area}" fill="url(#ar)"/><path d="${line}" fill="none" stroke="var(--up)" stroke-width="2"/>
+      ${fanSvg}
+      <line x1="${x(t0)}" x2="${x(t0)}" y1="${T - 6}" y2="${H - B}" stroke="var(--muted)" stroke-dasharray="2 3"/>
+      <rect x="${x(t0) - 42}" y="${T - 20}" width="84" height="18" rx="9" fill="var(--fg)"/><text x="${x(t0)}" y="${T - 7}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--bg)">Run ${px(M.price, 0)}</text>
+      <circle cx="${x(t0)}" cy="${y(M.price)}" r="5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/>
+      <line x1="${xe2}" x2="${lx - 4}" y1="${y(f.mid)}" y2="${labs.find(l => l.fill).yy}" stroke="${c}" stroke-opacity=".5"/>
+      <text x="${xe2}" y="${y(f.hi) - 8}" text-anchor="end" font-size="11" fill="${c}">${px(f.lo, 0)}–${px(f.hi, 0)} by ${new Date(f.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</text>
+      ${labSvg}</svg>`;
+  };
+  p.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+    p.querySelectorAll('.seg button').forEach(o => o.setAttribute('aria-pressed', o === b)); render(b.dataset.k);
+  }));
+  render('year');
+  app.append(p);
+})();
+
+/* ---------- Seats ---------- */
+(function seatsPanel() {
+  const p = $(`<section class="panel"><div class="panel-head"><h2>Seats</h2><span class="hint">Open a seat for its full reasoning and numbers</span></div><div class="seats"></div></section>`);
+  const g = p.querySelector('.seats');
+  D.seats.forEach((s, i) => {
+    const yr = s.votes.year.vote;
+    const card = $(`<article class="seat">
+      <h3><span class="sw" style="background:var(--${yr})"></span>${esc(s.name)}</h3>
+      <div class="chips">${HZ.map(([k, l]) => { const v = s.votes[k].vote; return `<span class="chip ${v}"><span class="k">${l}</span><span class="${v}">${arrow[v]} ${v}</span></span>`; }).join('')}</div>
+      <p class="sum">${esc(s.summary)}</p>
+      <div class="detail"><div class="feed">Reads: ${esc(s.feed || '')}</div>${(s.detail || []).map(d => `<p>• ${esc(d)}</p>`).join('')}</div>
+      <button aria-expanded="false" aria-controls="seat${i}">Show reasoning</button></article>`);
+    card.querySelector('button').addEventListener('click', (e) => {
+      const o = card.classList.toggle('open'); e.target.setAttribute('aria-expanded', o); e.target.textContent = o ? 'Hide reasoning' : 'Show reasoning';
+    });
+    g.append(card);
+  });
+  app.append(p);
+})();
+
+/* ---------- Debate ---------- */
+(function debatePanel() {
+  const d = D.debate; if (!d) return;
+  const li = (a) => `<ul>${a.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`;
+  app.append($(`<section class="panel"><div class="panel-head"><h2>The debate</h2><span class="hint">Bull and bear argue, the challenger probes, the judge rules</span></div>
+    <div class="debate">
+      <div class="side bull"><h3><span>Bull case</span><span class="mono up">${px(D.price.bull_price, 0)}</span></h3>${li(d.bull)}</div>
+      <div class="side bear"><h3><span>Bear case</span><span class="mono down">${px(D.price.bear_price, 0)}</span></h3>${li(d.bear)}</div>
+      <div class="side chal"><h3><span>Challenger</span></h3>${li(d.challenger)}</div>
+      <div class="side judge"><h3><span>Verdict</span><span class="mono">${D.call.rating}</span></h3><p>${esc(d.verdict)}</p></div>
+    </div></section>`));
+})();
+
+/* ---------- Business check ---------- */
+(function bizPanel() {
+  const b = D.business, g = b.growth, pi = b.priced_in;
+  const st = { 'Speeding up': 'good', 'Steady': 'warn', 'Slowing': 'bad' }[g.state];
+  const mx = Math.max(...g.bars.map(v => Math.abs(v.value)), 0.01);
+  const BW = 460, BH = 170, bw = BW / g.bars.length;
+  const bars = g.bars.map((v, i) => { const h = Math.abs(v.value) / mx * (BH - 40), last = i === g.bars.length - 1;
+    return `<rect x="${i * bw + bw * .2}" y="${BH - 22 - h}" width="${bw * .6}" height="${h}" rx="3" fill="var(--${v.value >= 0 ? 'up' : 'down'})" fill-opacity="${last ? 1 : .55}"/>
+      <text x="${i * bw + bw / 2}" y="${BH - 26 - h}" text-anchor="middle" font-size="12" font-family="var(--f-mono)" fill="var(--fg)">${pct(v.value, 0)}</text>
+      <text x="${i * bw + bw / 2}" y="${BH - 6}" text-anchor="middle" font-size="11.5" fill="var(--muted)">${esc(v.label)}</text>`; }).join('');
+  const piState = pi.score < 45 ? 'good' : pi.score < 70 ? 'warn' : 'bad';
+  const om = b.op_margin, fc = b.fcf;
+  app.append($(`<section class="panel"><div class="panel-head"><h2>Business check</h2><span class="hint">Is the business improving, and how much of that is already in the price?</span></div>
+    <div class="biz">
+      <div style="min-width:0">
+        <div class="panel-head" style="margin-bottom:6px"><span class="eyebrow">Growth</span><span class="pill ${st}">${g.state}</span></div>
+        <div><span class="big-growth">${pct(g.latest_yoy, 0)}</span> <span class="muted">revenue vs a year ago, after ${pct(g.last_fy, 0)} over the last full year</span></div>
+        <svg viewBox="0 0 ${BW} ${BH}" style="width:100%;height:auto;margin:10px 0" role="img" aria-label="Revenue growth by period">${bars}<line x1="0" x2="${BW}" y1="${BH - 22}" y2="${BH - 22}" stroke="var(--line)"/></svg>
+        <div class="kv"><span>Operating margin</span><span class="v ${om.to >= om.from ? 'good' : 'warn'}">${om.to >= om.from ? 'widening' : 'narrowing'} · ${pct(om.from, 0, false)} → ${pct(om.to, 0, false)}</span></div>
+        <div class="kv"><span>Free cash flow</span><span class="v ${fc.yoy > 0.05 ? 'good' : fc.yoy < -0.05 ? 'bad' : 'warn'}">${fc.yoy > 0.05 ? 'growing' : fc.yoy < -0.05 ? 'shrinking' : 'flat'} · ${pct(fc.yoy, 0)} vs a year ago</span></div>
+        <div class="kv"><span>SBC-adjusted FCF margin</span><span class="v">${pct(fc.sbc_adj_margin, 1, false)}</span></div>
+      </div>
+      <div style="min-width:0">
+        <div class="panel-head" style="margin-bottom:6px"><span class="eyebrow">Priced in?</span><span class="pill ${piState}">${pi.label} · ${pi.score}/100</span></div>
+        <div class="gauge"><span class="mk" style="left:${pi.score}%"></span></div>
+        <div class="gauge-ax"><span>Cheap</span><span>Fair</span><span>Priced for perfection</span></div>
+        ${pi.rows.map(r => `<div class="kv"><span>${esc(r.label)}</span><span class="v ${r.state}">${esc(r.value)}</span></div>`).join('')}
+      </div>
+    </div>
+    <p class="cap">The priced-in score averages five readings, each scaled 0–100: PEG, the growth the price implies (reverse DCF) against consensus, price move against estimate revisions over 3 months, room to the analyst target, and room to our fair value. It informs the call; it does not move the council.</p></section>`));
+})();
+
+/* ---------- Valuation ---------- */
+(function valuationPanel() {
+  const V = D.valuation, ff = D.football;
+  const lo = Math.min(...ff.map(r => r.lo), M.price) * 0.92, hi = Math.max(...ff.map(r => r.hi), M.price) * 1.05;
+  const W = 900, rowH = 30, L = 170, R = 20, H = ff.length * rowH + 40;
+  const x = (v) => L + (v - lo) / (hi - lo) * (W - L - R);
+  const ffSvg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Valuation range by method">
+    ${ff.map((r, i) => `<text x="${L - 10}" y="${i * rowH + 24}" text-anchor="end" font-size="12" fill="var(--fg)">${esc(r.method)}</text>
+      <rect x="${x(r.lo)}" y="${i * rowH + 10}" width="${Math.max(3, x(r.hi) - x(r.lo))}" height="18" rx="4" fill="var(--${r.kind || 'accent'})" fill-opacity=".75"/>
+      <text x="${x(r.hi) + 6}" y="${i * rowH + 24}" font-size="11" font-family="var(--f-mono)" fill="var(--muted)">${px(r.lo, 0)}–${px(r.hi, 0)}</text>`).join('')}
+    <line x1="${x(M.price)}" x2="${x(M.price)}" y1="4" y2="${H - 24}" stroke="var(--fg)" stroke-width="2"/>
+    <text x="${x(M.price)}" y="${H - 8}" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--fg)">Price ${px(M.price, 0)}</text>
+    <line x1="${x(V.blended_fair_value)}" x2="${x(V.blended_fair_value)}" y1="4" y2="${H - 24}" stroke="var(--accent)" stroke-dasharray="4 3" stroke-width="2"/>
+    <text x="${x(V.blended_fair_value)}" y="${H - 8}" text-anchor="${V.blended_fair_value > M.price ? 'start' : 'end'}" dx="${V.blended_fair_value > M.price ? 6 : -6}" font-size="11.5" fill="var(--accent)">Fair ${px(V.blended_fair_value, 0)}</text></svg>`;
+  const sc = ['bear', 'base', 'bull'];
+  const S = D.scenarios || {};
+  const dcfRows = [['Revenue CAGR (5y)', k => pct(S[k]?.cagr, 1, false)], ['Final-year FCF margin', k => pct(S[k]?.margin, 1, false)],
+    ['Terminal growth', k => pct(S[k]?.tg, 1, false)], ['Probability', k => pct(S[k]?.prob, 0, false)],
+    ['Value / share', k => px(V.dcf[k].per_share)], ['Terminal value % of EV', k => pct(V.dcf[k].tv_share_of_ev, 0, false)]];
+  const grid = V.sensitivity_base_per_share, gk = Object.keys(grid), ck = Object.keys(grid[gk[0]]);
+  const heat = (v) => { const r = Math.max(-1, Math.min(1, v / M.price - 1)); return r >= 0 ? `background:color-mix(in srgb, var(--up) ${Math.round(r * 60)}%, transparent)` : `background:color-mix(in srgb, var(--down) ${Math.round(-r * 60)}%, transparent)`; };
+  const comps = D.comps || [];
+  const f1 = (v, s = 'x') => v == null ? '–' : v.toFixed(1) + s;
+  const mult = Object.entries(V.multiples || {});
+  app.append($(`<section class="panel"><div class="panel-head"><h2>Valuation</h2>
+    <span class="hint mono">WACC ${pct(V.wacc, 1, false)} · Ke ${pct(V.cost_of_equity, 1, false)} · price implies ${pct(V.reverse_dcf_implied_5y_rev_cagr, 1, false)} 5y revenue CAGR</span></div>
+    <div class="chart-box">${ffSvg}</div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="tbl"><div class="eyebrow" style="margin-bottom:6px">DCF scenarios</div><table><thead><tr><th></th>${sc.map(k => `<th>${k}</th>`).join('')}</tr></thead>
+        <tbody>${dcfRows.map(([l, f]) => `<tr><td>${l}</td>${sc.map(k => `<td>${f(k)}</td>`).join('')}</tr>`).join('')}
+        <tr class="subject"><td>Probability-weighted</td><td colspan="3">${px(V.prob_weighted_dcf)}</td></tr></tbody></table></div>
+      <div class="tbl heat"><div class="eyebrow" style="margin-bottom:6px">Base DCF sensitivity: WACC ↓ × terminal growth →</div><table><thead><tr><th></th>${ck.map(c => `<th>${pct(+c.split('=')[1], 1, false)}</th>`).join('')}</tr></thead>
+        <tbody>${gk.map(r => `<tr><td>${pct(+r.split('=')[1], 1, false)}</td>${ck.map(c => `<td class="hc" style="${heat(grid[r][c])}">${px(grid[r][c], 0)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    </div>
+    <div class="tbl" style="margin-top:18px"><div class="eyebrow" style="margin-bottom:6px">Relative valuation vs peers</div><table>
+      <thead><tr><th>Company</th><th>P/E fwd</th><th>EV/EBITDA fwd</th><th>EV/Sales fwd</th><th>P/FCF</th><th>Rev growth</th><th>Op margin</th><th>ROIC</th></tr></thead>
+      <tbody>${comps.map(c => `<tr class="${c.subject ? 'subject' : ''}"><td>${esc(c.ticker)}</td><td>${f1(c.pe_fwd)}</td><td>${f1(c.ev_ebitda_fwd)}</td><td>${f1(c.ev_sales_fwd)}</td><td>${f1(c.p_fcf)}</td><td>${pct(c.growth, 0, false)}</td><td>${pct(c.op_margin, 0, false)}</td><td>${pct(c.roic, 0, false)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="tbl" style="margin-top:14px"><table><thead><tr><th>Method</th><th>Peer median</th><th>Implied value</th><th>vs price</th></tr></thead>
+      <tbody>${mult.map(([k, v]) => `<tr><td>${k}</td><td>${f1(v.peer_median)}</td><td>${px(v.implied)}</td><td class="${cls(v.implied / M.price - 1)}">${pct(v.implied / M.price - 1)}</td></tr>`).join('')}
+      <tr class="subject"><td>Blended fair value (DCF ${Math.round((D.weights?.dcf ?? .5) * 100)}% / multiples ${Math.round((D.weights?.multiples ?? .5) * 100)}%)</td><td></td><td>${px(V.blended_fair_value)}</td><td class="${cls(V.upside)}">${pct(V.upside)}</td></tr></tbody></table></div>
+    ${D.valuation_note ? `<p class="cap">${esc(D.valuation_note)}</p>` : ''}</section>`));
+})();
+
+/* ---------- The books ---------- */
+(function booksPanel() {
+  const F = D.financials; if (!F) return;
+  const fmt = (v, f) => v == null ? '–' : f === 'pct' ? pct(v, 1, false) : f === 'x' ? v.toFixed(1) + 'x' : f === 'ps' ? px(v) : Number(v).toLocaleString('en-GB', { maximumFractionDigits: 0 });
+  app.append($(`<section class="panel"><div class="panel-head"><h2>The books</h2><span class="hint">${esc(F.unit || '')}</span></div>
+    <div class="tbl"><table><thead><tr><th></th>${F.years.map(y => `<th>${esc(y)}</th>`).join('')}</tr></thead>
+      <tbody>${F.rows.map(r => r.section ? `<tr><td colspan="${F.years.length + 1}" class="eyebrow" style="padding-top:14px">${esc(r.section)}</td></tr>` : `<tr><td>${esc(r.label)}</td>${r.values.map(v => `<td>${fmt(v, r.fmt)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="tbl"><div class="eyebrow" style="margin-bottom:6px">Ratios</div><table><thead><tr><th></th><th>Company</th><th>Peer median</th></tr></thead>
+        <tbody>${(D.ratios || []).map(r => `<tr><td>${esc(r.label)}</td><td>${esc(r.value)}</td><td>${esc(r.peer ?? '–')}</td></tr>`).join('')}</tbody></table></div>
+      <div class="tbl"><div class="eyebrow" style="margin-bottom:6px">Health checks</div><table><thead><tr><th></th><th>Score</th><th style="text-align:left">Read</th></tr></thead>
+        <tbody>${(D.health || []).map(r => `<tr><td>${esc(r.label)}</td><td>${esc(r.value)}</td><td style="text-align:left;font-family:var(--f-body)">${esc(r.note)}</td></tr>`).join('')}</tbody></table></div>
+    </div></section>`));
+})();
+
+/* ---------- Risks, catalysts, sources ---------- */
+(function tail() {
+  const R = D.risks || [], C = D.catalysts || [];
+  const lvl = (v) => `<span class="pill ${v === 'High' ? 'bad' : v === 'Med' ? 'warn' : 'good'}">${v}</span>`;
+  app.append($(`<section class="panel"><div class="grid2">
+    <div class="tbl"><h2 style="margin-bottom:10px">Risks</h2><table><thead><tr><th>Risk</th><th>Prob.</th><th>Impact</th></tr></thead>
+      <tbody>${R.map(r => `<tr><td style="white-space:normal">${esc(r.risk)}</td><td>${lvl(r.prob)}</td><td>${lvl(r.impact)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="tbl"><h2 style="margin-bottom:10px">Catalysts</h2><table><thead><tr><th>Date</th><th style="text-align:left">Event</th></tr></thead>
+      <tbody>${C.map(c => `<tr><td>${esc(c.date)}</td><td style="text-align:left;white-space:normal;font-family:var(--f-body)">${esc(c.event)}</td></tr>`).join('')}</tbody></table></div>
+    </div>
+    ${D.change_my_mind ? `<p class="cap"><strong>What would change the call:</strong> ${esc(D.change_my_mind)}</p>` : ''}</section>`));
+  app.append($(`<section class="panel foot"><h2 style="margin-bottom:10px;color:var(--fg)">Sources</h2>
+    <ol class="src">${(D.sources || []).map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a></li>`).join('')}</ol>
+    <p style="margin-top:14px">Call ID ${esc(M.ticker)}-${esc(M.asof.slice(0, 10))} is logged and will be scored at 1 week, 3 months and 1 year. Analysis, not personalised financial advice.</p></section>`));
+})();
+</script>

@@ -1,0 +1,428 @@
+<title>SMPL Council Report</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a trading-desk dossier. Verdict strip on top, then council -> price fan -> seats -> debate -> business check -> books. Dark-first. */
+:root {
+  --bg: #0e1215; --panel: #151a1f; --panel-2: #1b2127; --line: #262e35;
+  --fg: #e4e8eb; --muted: #8b959e; --faint: #5d6770;
+  --up: #3fbf86; --up-bg: rgba(63,191,134,.13); --down: #e8655e; --down-bg: rgba(232,101,94,.14);
+  --even: #d6a640; --even-bg: rgba(214,166,64,.14); --accent: #74a7ff; --m3: #a98bff; --yr: #f0a35a; --wk: #4cc6d8;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  --bg: #f3f5f6; --panel: #ffffff; --panel-2: #f5f7f8; --line: #dde2e6;
+  --fg: #12181c; --muted: #5a6670; --faint: #8d979f;
+  --up: #17895a; --up-bg: rgba(23,137,90,.1); --down: #c43b35; --down-bg: rgba(196,59,53,.1);
+  --even: #9a6f0c; --even-bg: rgba(154,111,12,.12); --accent: #2d68d0; --m3: #6f4fd6; --yr: #c56b17; --wk: #128a9b;
+  color-scheme: light; } }
+:root[data-theme="light"] {
+  --bg: #f3f5f6; --panel: #ffffff; --panel-2: #f5f7f8; --line: #dde2e6;
+  --fg: #12181c; --muted: #5a6670; --faint: #8d979f;
+  --up: #17895a; --up-bg: rgba(23,137,90,.1); --down: #c43b35; --down-bg: rgba(196,59,53,.1);
+  --even: #9a6f0c; --even-bg: rgba(154,111,12,.12); --accent: #2d68d0; --m3: #6f4fd6; --yr: #c56b17; --wk: #128a9b;
+  color-scheme: light; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--f-body); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px; }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+h2 { font-size: 1.2rem; }
+.mono, .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.eyebrow { font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; min-width: 0; }
+.panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.panel-head .hint { font-size: .8rem; color: var(--muted); }
+.up { color: var(--up); } .down { color: var(--down); } .even { color: var(--even); }
+.sample { background: var(--even-bg); color: var(--even); border: 1px solid var(--even); border-radius: 8px; padding: 8px 12px; font-size: .85rem; }
+
+/* Verdict strip */
+.verdict { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 20px; align-items: start; }
+.ticker-line { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.ticker-line h1 { font-size: 2.6rem; line-height: 1; }
+.ticker-line .co { color: var(--muted); font-size: 1rem; }
+.price-line { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; margin-top: 10px; }
+.price-line .px { font: 600 2rem var(--f-mono); }
+.thesis { margin: 14px 0 0; max-width: 62ch; }
+.call-card { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.call-card > div { background: var(--panel-2); padding: 12px 14px; }
+.call-card .v { font: 600 1.15rem var(--f-mono); }
+.rating { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; }
+.rating .big { font: 700 1.9rem var(--f-display); letter-spacing: .02em; }
+.position { margin-top: 12px; border-left: 3px solid var(--accent); padding: 8px 12px; background: var(--panel-2); border-radius: 0 8px 8px 0; font-size: .9rem; }
+
+/* Council */
+.hz { display: grid; grid-template-columns: 150px minmax(0,1fr) 190px; gap: 18px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line); }
+.hz:first-of-type { border-top: 0; }
+.hz .name { font-weight: 600; } .hz .sc { font-size: .8rem; color: var(--muted); }
+.track-wrap { position: relative; }
+.track { position: relative; height: 8px; background: var(--panel-2); border-radius: 4px; }
+.track .mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: var(--faint); }
+.track .bar { position: absolute; top: 0; bottom: 0; border-radius: 4px; }
+.dots { position: relative; margin-top: 8px; }
+.dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; transform: translateX(-50%); }
+.axis { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); }
+.lean { text-align: right; } .lean .l { font: 700 1.35rem var(--f-display); } .lean .s { font-size: .8rem; color: var(--muted); }
+
+/* Fan chart */
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { background: transparent; color: var(--muted); border: 0; padding: 6px 12px; font: 500 .82rem var(--f-body); cursor: pointer; display: flex; gap: 6px; align-items: center; }
+.seg button[aria-pressed="true"] { background: var(--panel-2); color: var(--fg); }
+.seg button:focus-visible, .seat:focus-visible, .seat button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.chart-box { overflow-x: auto; }
+.chart-box svg { display: block; width: 100%; min-width: 620px; height: auto; }
+.cap { font-size: .8rem; color: var(--muted); margin: 10px 0 0; max-width: 90ch; }
+
+/* Seats */
+.seats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.seat { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.seat h3 { font: 600 .98rem var(--f-body); display: flex; align-items: center; gap: 8px; }
+.seat .feed { font-size: .75rem; color: var(--muted); }
+.chips { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 6px; }
+.chip { font-size: .74rem; border-radius: 6px; padding: 4px 6px; text-align: center; white-space: nowrap; }
+.chip .k { color: var(--muted); margin-right: 4px; }
+.chip.up { background: var(--up-bg); } .chip.down { background: var(--down-bg); } .chip.even { background: var(--even-bg); }
+.seat p { margin: 0; font-size: .88rem; }
+.seat .sum { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.seat.open .sum { display: block; }
+.seat .detail { display: none; font-size: .84rem; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 8px; }
+.seat.open .detail { display: block; }
+.seat button { justify-self: start; background: none; border: 0; color: var(--accent); font: 500 .8rem var(--f-body); cursor: pointer; padding: 0; }
+
+/* Debate */
+.debate { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.side { border-radius: 10px; padding: 14px 16px; border: 1px solid var(--line); background: var(--panel-2); min-width: 0; }
+.side.bull { border-top: 3px solid var(--up); } .side.bear { border-top: 3px solid var(--down); }
+.side.chal { border-top: 3px solid var(--even); } .side.judge { border-top: 3px solid var(--accent); }
+.side h3 { font: 600 .95rem var(--f-body); display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.side ul { margin: 0; padding-left: 18px; font-size: .9rem; } .side p { margin: 0; font-size: .9rem; }
+
+/* Business check */
+.biz { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 28px; }
+.pill { font-size: .75rem; font-weight: 600; border-radius: 999px; padding: 3px 10px; }
+.pill.good { background: var(--up-bg); color: var(--up); } .pill.warn { background: var(--even-bg); color: var(--even); } .pill.bad { background: var(--down-bg); color: var(--down); }
+.kv { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px solid var(--line); font-size: .9rem; }
+.kv .v { font-family: var(--f-mono); text-align: right; }
+.kv .v.good { color: var(--up); } .kv .v.warn { color: var(--even); } .kv .v.bad { color: var(--down); }
+.gauge { position: relative; height: 10px; border-radius: 5px; background: linear-gradient(90deg, var(--up), var(--even), var(--down)); margin: 16px 0 6px; }
+.gauge .mk { position: absolute; top: -5px; width: 4px; height: 20px; background: var(--fg); border-radius: 2px; transform: translateX(-50%); box-shadow: 0 0 0 2px var(--panel); }
+.gauge-ax { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); margin-bottom: 10px; }
+.big-growth { font: 700 1.9rem var(--f-display); color: var(--up); }
+
+/* Tables */
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .86rem; }
+th, td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--muted); font-weight: 600; font-size: .76rem; letter-spacing: .04em; text-transform: uppercase; }
+td { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+td:first-child { font-family: var(--f-body); }
+tr.subject td { background: var(--panel-2); font-weight: 600; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+.heat td.hc { color: var(--fg); }
+.foot { font-size: .78rem; color: var(--muted); }
+.foot a { color: var(--accent); }
+ol.src { margin: 0; padding-left: 20px; font-size: .85rem; columns: 2; column-gap: 28px; }
+ol.src a { color: var(--accent); word-break: break-word; }
+
+@media (max-width: 860px) {
+  .verdict, .biz, .grid2, .debate { grid-template-columns: minmax(0,1fr); }
+  .seats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .hz { grid-template-columns: minmax(0,1fr) auto; }
+  .hz .track-wrap { grid-column: 1 / -1; grid-row: 2; }
+  ol.src { columns: 1; }
+}
+@media (max-width: 560px) { .seats { grid-template-columns: minmax(0,1fr); } .ticker-line h1 { font-size: 2rem; } }
+@media (prefers-reduced-motion: no-preference) { .track .bar { transition: width .6s ease; } }
+</style>
+
+<script id="data" type="application/json">{"meta": {"ticker": "SMPL", "name": "Sample Semiconductor Corp", "exchange": "NASDAQ", "sector": "Semiconductors", "asof": "2026-10-20", "quote_status": "sample", "price": 210.4, "change_pct": -0.0042, "sgd_rate": 1.29, "currency_symbol": "$", "sample": true}, "call": {"rating": "BUY", "target": 258.17, "conviction": "Medium", "thesis": "Best-in-class growth and returns at a price that assumes slower growth than consensus. Buy, with sizing kept moderate for customer concentration."}, "position": {"text": "Example: 30 shares at $112.40 avg cost. Hold the core; add on pullbacks toward the entry price."}, "seats": [{"name": "Price Chart", "feed": "price, volume, moving averages", "votes": {"week": {"score": 0.35, "vote": "up"}, "m3": {"score": 0.4, "vote": "up"}, "year": {"score": 0.3, "vote": "up"}}, "summary": "Closed above its 20- and 50-day averages with the 20 above the 50.", "detail": ["Price vs 50dma +6.1%, vs 200dma +21.4%", "14-day RSI 63, not overbought", "Volume on up-days 1.3x down-days over 20 sessions"]}, {"name": "Financials", "feed": "revenue, margins, debt", "votes": {"week": {"score": 0.3, "vote": "up"}, "m3": {"score": 0.45, "vote": "up"}, "year": {"score": 0.6, "vote": "up"}}, "summary": "Revenue growth of 56% YoY with a 73.5% gross margin is unusually strong for the sector.", "detail": ["Gross margin 73.5% vs peer median 58%", "Net cash $18bn, no maturities before 2029", "ROIC 61% vs WACC 10.8%"]}, {"name": "Analyst Targets", "feed": "price targets, rating changes", "votes": {"week": {"score": 0.25, "vote": "up"}, "m3": {"score": 0.35, "vote": "up"}, "year": {"score": 0.45, "vote": "up"}}, "summary": "Most analysts rate it a buy; the average 12-month target is about 8% above the price.", "detail": ["38 Buy / 6 Hold / 1 Sell", "Mean target $227.0, range 158\u2013305", "4 target raises in the last 30 days"]}, {"name": "Earnings Estimates", "feed": "EPS and revenue forecasts", "votes": {"week": {"score": 0.3, "vote": "up"}, "m3": {"score": 0.5, "vote": "up"}, "year": {"score": 0.45, "vote": "up"}}, "summary": "EPS estimates revised up 3.4% over 30 days, a clear positive trend.", "detail": ["FY+1 EPS revised +3.4% (30d), +7% (90d)", "Beat EPS in 8 of last 8 quarters"]}, {"name": "Insider Trades", "feed": "Form 4 filings", "votes": {"week": {"score": 0, "vote": "even"}, "m3": {"score": -0.25, "vote": "down"}, "year": {"score": 0, "vote": "even"}}, "summary": "Steady 10b5-1 selling by executives; no open-market buying.", "detail": ["$412m sold in 90 days, all under 10b5-1 plans", "No insider purchases in 12 months"]}, {"name": "Congress Trades", "feed": "disclosed congressional trades", "votes": {"week": {"score": 0, "vote": "even"}, "m3": {"score": 0.2, "vote": "up"}, "year": {"score": 0.2, "vote": "up"}}, "summary": "Two disclosed buys, both stale by the time they were visible.", "detail": ["2 buys, 0 sells in 6 months, both filed ~30 days late"]}, {"name": "News", "feed": "headlines, events", "votes": {"week": {"score": 0.45, "vote": "up"}, "m3": {"score": 0.3, "vote": "up"}, "year": {"score": 0.05, "vote": "even"}}, "summary": "Two catalysts this week: hyperscaler capex guidance raised; export rule review pending.", "detail": ["Hyperscaler capex guide raised (bullish, 4 days old)", "Export-control review due next month (bearish risk)"]}, {"name": "SEC Filings", "feed": "10-K/10-Q, buybacks, dilution", "votes": {"week": {"score": 0, "vote": "even"}, "m3": {"score": 0.2, "vote": "up"}, "year": {"score": -0.2, "vote": "down"}}, "summary": "Expanded buyback is notable; customer concentration rose in the latest 10-Q.", "detail": ["$50bn buyback added", "Top 2 customers 39% of revenue, up from 31%"]}, {"name": "Institutional Holdings", "feed": "13F, short interest", "votes": {"week": {"score": 0.2, "vote": "up"}, "m3": {"score": 0.3, "vote": "up"}, "year": {"score": 0.3, "vote": "up"}}, "summary": "Institutional ownership up 1.8% QoQ with more top holders adding than trimming.", "detail": ["Short interest 1.1% of float", "Top-20 holders: 13 added, 5 trimmed"]}, {"name": "Options Market", "feed": "put/call, implied vol, skew", "votes": {"week": {"score": 0.25, "vote": "up"}, "m3": {"score": 0.2, "vote": "up"}, "year": {"score": 0, "vote": "even"}}, "summary": "Put/call volume of 0.87 is modestly call-skewed but not extreme.", "detail": ["IV 44% vs 30d HV 38%", "25-delta skew neutral"]}, {"name": "Economy", "feed": "rates, inflation, cycle", "votes": {"week": {"score": 0.2, "vote": "up"}, "m3": {"score": 0.25, "vote": "up"}, "year": {"score": 0.3, "vote": "up"}}, "summary": "Falling rates and resilient capex support the sector.", "detail": ["Fed funds futures price 2 cuts in 12 months", "ISM new orders 52.4"]}, {"name": "Related Markets", "feed": "sector ETF, peers, index", "votes": {"week": {"score": 0.3, "vote": "up"}, "m3": {"score": 0.35, "vote": "up"}, "year": {"score": 0.3, "vote": "up"}}, "summary": "Sector ETF, peer basket and overseas session all pointed up over five sessions.", "detail": ["SOXX +3.2% (5d)", "Peer basket +2.6% (5d)"]}], "debate": {"bull": ["Demand visibility into 2028 from hyperscaler capex", "73% gross margin funds a widening software moat", "Net cash and buybacks cushion drawdowns"], "bear": ["Top 2 customers 39% of revenue, rising", "Price implies ~27%/yr growth vs ~16% consensus", "Export controls cap the China market"], "challenger": ["Bull case leans on capex that customers can cut quickly", "Bear case ignores 8 straight beats and rising estimates"], "verdict": "Quality is not in doubt and the price only bakes in ~11%/yr growth against ~16% expected. Estimates and momentum agree. Buy; add more below the entry price."}, "business": {"growth": {"bars": [{"label": "FY2024", "value": 0.62}, {"label": "FY2025", "value": 0.36}, {"label": "Latest qtr", "value": 0.56}], "latest_yoy": 0.56, "last_fy": 0.36, "state": "Speeding up"}, "op_margin": {"from": 0.62, "to": 0.61}, "fcf": {"yoy": 0.0, "sbc_adj_margin": 0.39}, "peg": 1.4, "expected_growth": 0.16, "price_chg_3m": 0.23, "eps_rev_3m": 0.07, "room_to_target": 0.08, "priced_in": {"score": 39, "label": "Partly", "rows": [{"label": "Price vs expected growth (PEG)", "value": "1.4x", "state": "warn"}, {"label": "Growth the price assumes", "value": "~11%/yr vs ~16% expected", "state": "good"}, {"label": "Price vs earnings estimates, 3 mo", "value": "+23% vs +7%", "state": "bad"}, {"label": "Room to analysts' average target", "value": "+8%", "state": "warn"}, {"label": "Room to our fair value", "value": "+23%", "state": "good"}]}}, "price": {"history": [["2025-10-23", 117.47], ["2025-10-24", 118.93], ["2025-10-26", 118.47], ["2025-10-27", 117.78], ["2025-10-28", 115.52], ["2025-10-30", 115.11], ["2025-10-31", 118.09], ["2025-11-02", 119.32], ["2025-11-03", 122.21], ["2025-11-04", 123.02], ["2025-11-06", 124.23], ["2025-11-07", 124.87], ["2025-11-09", 120.51], ["2025-11-10", 122.93], ["2025-11-11", 124.45], ["2025-11-13", 125.96], ["2025-11-14", 121.49], ["2025-11-16", 117.05], ["2025-11-17", 114.91], ["2025-11-18", 113.85], ["2025-11-20", 114.75], ["2025-11-21", 114.76], ["2025-11-23", 116.21], ["2025-11-24", 114.7], ["2025-11-25", 115.61], ["2025-11-27", 116.75], ["2025-11-28", 115.19], ["2025-11-30", 119.76], ["2025-12-01", 121.37], ["2025-12-02", 124.74], ["2025-12-04", 123.19], ["2025-12-05", 121.33], ["2025-12-07", 120.55], ["2025-12-08", 120.4], ["2025-12-09", 122.22], ["2025-12-11", 123.03], ["2025-12-12", 121.95], ["2025-12-14", 119.55], ["2025-12-15", 118.31], ["2025-12-16", 121.67], ["2025-12-18", 119.66], ["2025-12-19", 120.44], ["2025-12-21", 121.7], ["2025-12-22", 117.91], ["2025-12-23", 118.17], ["2025-12-25", 121.74], ["2025-12-26", 116.6], ["2025-12-28", 115.9], ["2025-12-29", 115.76], ["2025-12-30", 113.82], ["2026-01-01", 115.2], ["2026-01-02", 115.17], ["2026-01-04", 111.64], ["2026-01-05", 113.82], ["2026-01-06", 115.63], ["2026-01-08", 118.19], ["2026-01-09", 122.13], ["2026-01-11", 123.25], ["2026-01-12", 123.71], ["2026-01-13", 120.35], ["2026-01-15", 122.13], ["2026-01-16", 120.63], ["2026-01-18", 119.56], ["2026-01-19", 116.41], ["2026-01-20", 114.08], ["2026-01-22", 112.88], ["2026-01-23", 116.26], ["2026-01-25", 111.3], ["2026-01-26", 107.9], ["2026-01-27", 108.59], ["2026-01-29", 112.22], ["2026-01-30", 113.78], ["2026-02-01", 109.24], ["2026-02-02", 103.47], ["2026-02-03", 104.4], ["2026-02-05", 102.84], ["2026-02-06", 100.44], ["2026-02-08", 102.74], ["2026-02-09", 105.38], ["2026-02-11", 105.86], ["2026-02-12", 106.55], ["2026-02-13", 107.69], ["2026-02-15", 111.66], ["2026-02-16", 113.31], ["2026-02-18", 114.74], ["2026-02-19", 116.26], ["2026-02-20", 112.44], ["2026-02-22", 115.78], ["2026-02-23", 118.37], ["2026-02-25", 119.89], ["2026-02-26", 114.92], ["2026-02-27", 113.46], ["2026-03-01", 115.7], ["2026-03-02", 111.31], ["2026-03-04", 110.98], ["2026-03-05", 113.62], ["2026-03-06", 110.51], ["2026-03-08", 114.62], ["2026-03-09", 116.15], ["2026-03-10", 115.9], ["2026-03-12", 116.86], ["2026-03-13", 118.67], ["2026-03-15", 119.11], ["2026-03-16", 122.29], ["2026-03-17", 120.65], ["2026-03-19", 119.69], ["2026-03-20", 122.6], ["2026-03-22", 122.81], ["2026-03-23", 120.58], ["2026-03-24", 123.26], ["2026-03-26", 127.44], ["2026-03-27", 126.33], ["2026-03-29", 122.69], ["2026-03-30", 122.46], ["2026-03-31", 122.2], ["2026-04-02", 121.53], ["2026-04-03", 125.48], ["2026-04-05", 122.81], ["2026-04-06", 126.41], ["2026-04-07", 123.06], ["2026-04-09", 121.08], ["2026-04-10", 122.91], ["2026-04-12", 126.14], ["2026-04-13", 128.69], ["2026-04-14", 129.81], ["2026-04-16", 130.37], ["2026-04-17", 130.95], ["2026-04-19", 132.76], ["2026-04-20", 132.39], ["2026-04-21", 133.35], ["2026-04-23", 135.19], ["2026-04-24", 135.34], ["2026-04-26", 137.79], ["2026-04-27", 139.67], ["2026-04-28", 146.14], ["2026-04-30", 147.35], ["2026-05-01", 146.14], ["2026-05-03", 145.1], ["2026-05-04", 145.22], ["2026-05-05", 148.36], ["2026-05-07", 147.43], ["2026-05-08", 148.85], ["2026-05-10", 155.16], ["2026-05-11", 146.81], ["2026-05-12", 143.38], ["2026-05-14", 144.31], ["2026-05-15", 145.74], ["2026-05-17", 146.67], ["2026-05-18", 145.45], ["2026-05-19", 147.72], ["2026-05-21", 148.81], ["2026-05-22", 147.27], ["2026-05-24", 155.53], ["2026-05-25", 156.92], ["2026-05-26", 155.19], ["2026-05-28", 155.02], ["2026-05-29", 154.42], ["2026-05-31", 154.38], ["2026-06-01", 145.54], ["2026-06-02", 144.15], ["2026-06-04", 147.55], ["2026-06-05", 143.96], ["2026-06-07", 143.91], ["2026-06-08", 147.12], ["2026-06-09", 150.08], ["2026-06-11", 155.26], ["2026-06-12", 149.72], ["2026-06-14", 148.72], ["2026-06-15", 147.78], ["2026-06-17", 149.98], ["2026-06-18", 153.8], ["2026-06-19", 145.14], ["2026-06-21", 148.82], ["2026-06-22", 144.32], ["2026-06-24", 146.66], ["2026-06-25", 142.08], ["2026-06-26", 142.79], ["2026-06-28", 146.75], ["2026-06-29", 146.43], ["2026-06-30", 147.21], ["2026-07-02", 149.98], ["2026-07-03", 150.62], ["2026-07-05", 150.49], ["2026-07-06", 155.82], ["2026-07-07", 159.63], ["2026-07-09", 158.78], ["2026-07-10", 168.85], ["2026-07-12", 164.82], ["2026-07-13", 168.36], ["2026-07-14", 167.56], ["2026-07-16", 168.24], ["2026-07-17", 171.05], ["2026-07-19", 172.08], ["2026-07-20", 174.71], ["2026-07-21", 169.12], ["2026-07-23", 163.78], ["2026-07-24", 166.19], ["2026-07-26", 162.89], ["2026-07-27", 159.42], ["2026-07-28", 154.52], ["2026-07-30", 159.06], ["2026-07-31", 161.87], ["2026-08-02", 167.39], ["2026-08-03", 164.15], ["2026-08-04", 164.33], ["2026-08-06", 160.44], ["2026-08-07", 163.35], ["2026-08-09", 169.34], ["2026-08-10", 166.24], ["2026-08-11", 172.24], ["2026-08-13", 176.22], ["2026-08-14", 175.72], ["2026-08-16", 168.45], ["2026-08-17", 173.93], ["2026-08-19", 173.76], ["2026-08-20", 171.66], ["2026-08-21", 173.36], ["2026-08-23", 175.12], ["2026-08-24", 181.19], ["2026-08-25", 177.37], ["2026-08-27", 182.06], ["2026-08-28", 188.32], ["2026-08-30", 194.65], ["2026-08-31", 194.09], ["2026-09-01", 191.15], ["2026-09-03", 195.69], ["2026-09-04", 196.41], ["2026-09-06", 197.16], ["2026-09-07", 203.66], ["2026-09-08", 202.7], ["2026-09-10", 192.93], ["2026-09-11", 191.5], ["2026-09-13", 184.05], ["2026-09-14", 187.6], ["2026-09-15", 189.12], ["2026-09-17", 186.8], ["2026-09-18", 186.97], ["2026-09-20", 190.64], ["2026-09-21", 191.18], ["2026-09-22", 197.06], ["2026-09-24", 197.01], ["2026-09-25", 201.79], ["2026-09-27", 208.75], ["2026-09-28", 216.51], ["2026-09-29", 213.57], ["2026-10-01", 217.99], ["2026-10-02", 209.4], ["2026-10-04", 204.7], ["2026-10-05", 196.26], ["2026-10-06", 201.15], ["2026-10-08", 195.99], ["2026-10-09", 196.15], ["2026-10-11", 195.54], ["2026-10-12", 195.63], ["2026-10-13", 193.31], ["2026-10-15", 194.52], ["2026-10-16", 202.56], ["2026-10-18", 202.98], ["2026-10-19", 205.6], ["2026-10-20", 210.4]], "sigma": 0.4, "source": "synthetic sample", "fans": {"week": {"date": "2026-10-27", "lo": 200.26, "mid": 212.29, "hi": 225.05, "sigma": 0.0563}, "m3": {"date": "2027-01-19", "lo": 177.12, "mid": 217.9, "hi": 268.07, "sigma": 0.2}, "year": {"date": "2027-10-20", "lo": 170.58, "mid": 258.17, "hi": 390.73, "sigma": 0.4}}, "bull_price": 465.826, "bear_price": 150.381}, "comps": [{"ticker": "SMPL", "subject": true, "pe_fwd": 38.96296296296296, "ev_ebitda_fwd": 10.814782608695651, "ev_sales_fwd": 5.922380952380952, "p_fcf": 53.94871794871795, "growth": 0.56, "op_margin": 0.61, "roic": 0.61}, {"ticker": "PEER1", "pe_fwd": 31, "ev_ebitda_fwd": 22, "ev_sales_fwd": 9, "p_fcf": 38, "growth": 0.28, "op_margin": 0.45, "roic": 0.3}, {"ticker": "PEER2", "pe_fwd": 24, "ev_ebitda_fwd": 17, "ev_sales_fwd": 6.5, "p_fcf": 30, "growth": 0.14, "op_margin": 0.33, "roic": 0.21}, {"ticker": "PEER3", "pe_fwd": 36, "ev_ebitda_fwd": 27, "ev_sales_fwd": 12, "p_fcf": 45, "growth": 0.35, "op_margin": 0.38, "roic": 0.25}, {"ticker": "PEER4", "pe_fwd": 19, "ev_ebitda_fwd": 13, "ev_sales_fwd": 4.8, "p_fcf": 22, "growth": 0.09, "op_margin": 0.27, "roic": 0.15}], "financials": {"unit": "USD millions, fiscal years", "years": ["FY2022", "FY2023", "FY2024", "FY2025", "LTM"], "rows": [{"section": "Income statement"}, {"label": "Revenue", "values": [16700, 17100, 27700, 37700, 52000]}, {"label": "Gross margin", "fmt": "pct", "values": [0.62, 0.57, 0.71, 0.74, 0.735]}, {"label": "Operating margin", "fmt": "pct", "values": [0.33, 0.27, 0.55, 0.62, 0.61]}, {"label": "Diluted EPS", "fmt": "ps", "values": [0.39, 0.18, 1.19, 1.95, 2.71]}, {"section": "Cash flow"}, {"label": "Operating cash flow", "values": [9100, 5600, 16500, 25200, 30100]}, {"label": "Capex", "values": [-980, -1830, -1070, -1250, -1400]}, {"label": "Free cash flow", "values": [8120, 3770, 15430, 23950, 28700]}, {"label": "Stock-based comp", "values": [2000, 2700, 3500, 4700, 5300]}, {"section": "Balance sheet"}, {"label": "Cash & investments", "values": [21200, 13300, 26000, 34800, 41200]}, {"label": "Total debt", "values": [11700, 11000, 9700, 8500, 8400]}, {"label": "Diluted shares (m)", "values": [2540, 2510, 2490, 2470, 2450]}]}, "ratios": [{"label": "ROE", "value": "78%", "peer": "24%"}, {"label": "ROIC", "value": "61%", "peer": "23%"}, {"label": "Net debt / EBITDA", "value": "-0.4x", "peer": "0.6x"}, {"label": "FCF conversion (FCF/NI)", "value": "86%", "peer": "92%"}, {"label": "Accrual ratio", "value": "-3%", "peer": "\u2013"}, {"label": "DSO", "value": "53 days", "peer": "48 days"}], "health": [{"label": "Piotroski F-score", "value": "8 / 9", "note": "Strong: only miss is rising receivables"}, {"label": "Altman Z", "value": "21.4", "note": "Far above the 3.0 safe line"}, {"label": "Beneish M", "value": "-2.6", "note": "Below -1.78, no manipulation flag"}], "risks": [{"risk": "Hyperscaler capex cut", "prob": "Med", "impact": "High"}, {"risk": "Export controls widen", "prob": "Med", "impact": "Med"}, {"risk": "Customer in-house chips", "prob": "High", "impact": "Med"}, {"risk": "Gross margin mean reversion", "prob": "Low", "impact": "High"}], "catalysts": [{"date": "19 Nov 2026", "event": "Q3 FY27 earnings"}, {"date": "Dec 2026", "event": "Export-control review outcome"}, {"date": "Mar 2027", "event": "Developer conference, product roadmap"}], "change_my_mind": "Upgrade to Buy below the entry price or if consensus growth rises above 22%. Downgrade if top-customer share passes 45% or gross margin drops under 68%.", "football": [{"method": "DCF bear\u2013bull", "lo": 150.381, "hi": 465.826}, {"method": "DCF base \u00b150bp WACC", "lo": 259.31, "hi": 369.35}, {"method": "P/E fwd", "lo": 133.65, "hi": 163.35000000000002, "kind": "m3"}, {"method": "EV/EBITDA fwd", "lo": 336.12244897959187, "hi": 410.8163265306123, "kind": "m3"}, {"method": "EV/Sales fwd", "lo": 245.75510204081633, "hi": 300.36734693877554, "kind": "m3"}, {"method": "P/FCF", "lo": 119.34, "hi": 145.86, "kind": "m3"}, {"method": "Analyst targets", "lo": 157.8, "hi": 305.08, "kind": "even"}, {"method": "52-week range", "lo": 106.55, "hi": 217.99, "kind": "wk"}], "sources": [{"label": "Synthetic sample, no real sources", "url": "https://example.com"}], "scenarios": {"bear": {"cagr": 0.09699283238966916, "margin": 0.3, "tg": 0.03, "prob": 0.25}, "base": {"cagr": 0.19476499206195408, "margin": 0.41, "tg": 0.035, "prob": 0.5}, "bull": {"cagr": 0.26651062663240177, "margin": 0.46, "tg": 0.04, "prob": 0.25}}, "council": [{"key": "week", "label": "Next week", "scored": "Scored in 7 days", "score": 0.265, "lean": "Up", "sub": "More likely to rise", "agree": 9, "total": 12}, {"key": "m3", "label": "Next 3 months", "scored": "Scored in 3 months", "score": 0.292, "lean": "Up", "sub": "More likely to rise", "agree": 11, "total": 12}, {"key": "year", "label": "Next year", "scored": "Scored in a year", "score": 0.279, "lean": "Up", "sub": "More likely to rise", "agree": 8, "total": 12}], "valuation": {"ticker": "SMPL", "price": 210.4, "wacc": 0.1075, "cost_of_equity": 0.1095, "after_tax_cost_of_debt": 0.0425, "dcf": {"bear": {"ev": 350434.215, "equity": 368434.215, "per_share": 150.381, "tv_share_of_ev": 0.673, "final_rev": 98494.196, "final_fcf": 29548.259}, "base": {"ev": 724371.508, "equity": 742371.508, "per_share": 303.009, "tv_share_of_ev": 0.732, "final_rev": 150939.926, "final_fcf": 61885.37}, "bull": {"ev": 1123274.166, "equity": 1141274.166, "per_share": 465.826, "tv_share_of_ev": 0.765, "final_rev": 202039.312, "final_fcf": 92938.083}}, "prob_weighted_dcf": 305.56, "reverse_dcf_implied_5y_rev_cagr": 0.1079, "sensitivity_base_per_share": {"wacc=0.097": {"g=0.025": 312.72, "g=0.030": 330.52, "g=0.035": 351.16, "g=0.040": 375.39, "g=0.045": 404.24}, "wacc=0.102": {"g=0.025": 292.59, "g=0.030": 307.81, "g=0.035": 325.29, "g=0.040": 345.56, "g=0.045": 369.35}, "wacc=0.107": {"g=0.025": 274.93, "g=0.030": 288.06, "g=0.035": 303.01, "g=0.040": 320.17, "g=0.045": 340.07}, "wacc=0.112": {"g=0.025": 259.31, "g=0.030": 270.73, "g=0.035": 283.63, "g=0.040": 298.31, "g=0.045": 315.16}, "wacc=0.117": {"g=0.025": 245.39, "g=0.030": 255.4, "g=0.035": 266.62, "g=0.040": 279.29, "g=0.045": 293.71}}, "multiples": {"P/E fwd": {"peer_median": 27.5, "implied": 148.5}, "EV/EBITDA fwd": {"peer_median": 19.5, "implied": 373.46938775510205}, "EV/Sales fwd": {"peer_median": 7.75, "implied": 273.0612244897959}, "P/FCF": {"peer_median": 34.0, "implied": 132.6}}, "multiples_fair_value": 210.78, "blended_fair_value": 258.17, "upside": 0.227, "rating": "BUY"}}</script>
+<div class="wrap" id="app"></div>
+
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const M = D.meta, CUR = M.currency_symbol || '$';
+const $ = (h) => { const t = document.createElement('template'); t.innerHTML = h.trim(); return t.content.firstElementChild; };
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const px = (v, d = 2) => v == null ? '–' : CUR + Number(v).toLocaleString('en-GB', {minimumFractionDigits: d, maximumFractionDigits: d});
+const pct = (v, d = 1, sign = true) => v == null ? '–' : (sign && v > 0 ? '+' : '') + (v * 100).toFixed(d) + '%';
+const cls = (v) => v > 0 ? 'up' : v < 0 ? 'down' : 'even';
+const arrow = { up: '▲', down: '▼', even: '●' };
+const HZ = [['week', 'Week', 'var(--wk)'], ['m3', '3 mo', 'var(--m3)'], ['year', 'Year', 'var(--yr)']];
+const app = document.getElementById('app');
+
+/* ---------- Verdict strip ---------- */
+(function verdict() {
+  const C = D.call, rc = { BUY: 'up', SELL: 'down', HOLD: 'even' }[C.rating];
+  const sgd = M.sgd_rate ? `<span class="muted mono">≈ S$${(M.price * M.sgd_rate).toFixed(2)}</span>` : '';
+  const pos = D.position ? `<div class="position"><span class="eyebrow">Your position</span><br>${esc(D.position.text)}</div>` : '';
+  app.append($(`<section class="panel">
+    ${M.sample ? '<div class="sample" style="margin-bottom:14px">Sample numbers for a layout preview. Not a real company.</div>' : ''}
+    <div class="verdict">
+      <div>
+        <div class="eyebrow">${esc(M.exchange)} · ${esc(M.sector || '')} · as of ${esc(M.asof)} · ${esc(M.quote_status)}</div>
+        <div class="ticker-line"><h1>${esc(M.ticker)}</h1><span class="co">${esc(M.name)}</span></div>
+        <div class="price-line"><span class="px">${px(M.price)}</span>
+          <span class="mono ${cls(M.change_pct)}">${pct(M.change_pct, 2)} today</span>${sgd}</div>
+        <p class="thesis">${esc(C.thesis)}</p>${pos}
+      </div>
+      <div class="call-card">
+        <div class="rating"><div><div class="eyebrow">Rating</div><div class="big ${rc}">${C.rating}</div></div>
+          <div style="text-align:right"><div class="eyebrow">Conviction</div><div class="v">${esc(C.conviction)}</div></div></div>
+        <div><div class="eyebrow">12m target</div><div class="v">${px(C.target)}</div></div>
+        <div><div class="eyebrow">Upside</div><div class="v ${cls(C.target / M.price - 1)}">${pct(C.target / M.price - 1)}</div></div>
+        <div><div class="eyebrow">Fair value</div><div class="v">${px(D.valuation.blended_fair_value)}</div></div>
+        <div><div class="eyebrow">Good entry (−20%)</div><div class="v">${px(D.valuation.blended_fair_value * 0.8)}</div></div>
+      </div>
+    </div></section>`));
+})();
+
+/* ---------- Council position ---------- */
+(function councilPanel() {
+  const p = $(`<section class="panel"><div class="panel-head"><h2>The Council's position</h2><span class="hint">Where the price is likely to go. Each dot is one seat.</span></div></section>`);
+  D.council.forEach(h => {
+    const color = h.score > 0.08 ? 'var(--up)' : h.score < -0.08 ? 'var(--down)' : 'var(--even)';
+    const w = Math.min(Math.abs(h.score), 1) * 50;
+    const left = h.score >= 0 ? 50 : 50 - w;
+    // stack dots that land in the same 3% bucket
+    const buckets = {};
+    const dots = D.seats.map(s => {
+      const v = s.votes[h.key], x = 50 + Math.max(-1, Math.min(1, v.score)) * 50;
+      const b = Math.round(x / 3); buckets[b] = (buckets[b] || 0) + 1;
+      return `<span class="dot" title="${esc(s.name)}: ${v.vote} (${v.score.toFixed(2)})" style="left:${x}%;top:${(buckets[b] - 1) * 11}px;background:var(--${v.vote})"></span>`;
+    });
+    const hgt = Math.max(...Object.values(buckets)) * 11;
+    p.append($(`<div class="hz">
+      <div><div class="name">${h.label}</div><div class="sc">${h.scored}</div></div>
+      <div class="track-wrap"><div class="track"><span class="bar" style="left:${left}%;width:${w}%;background:${color}"></span><span class="mid"></span></div>
+        <div class="dots" style="height:${hgt}px">${dots.join('')}</div>
+        <div class="axis"><span>◀ Down</span><span>Even</span><span>Up ▶</span></div></div>
+      <div class="lean"><div class="l" style="color:${color}">${h.lean}</div><div class="s">${h.sub}</div><div class="s">${h.agree} of ${h.total} seats agree</div></div>
+    </div>`));
+  });
+  app.append(p);
+})();
+
+/* ---------- Price + forecast fan ---------- */
+(function fanPanel() {
+  const P = D.price, F = P.fans;
+  const p = $(`<section class="panel"><div class="panel-head"><h2>Price</h2>
+    <div class="seg" role="group" aria-label="Forecast horizon">${HZ.map(([k, l, c]) =>
+      `<button data-k="${k}" aria-pressed="${k === 'year'}"><span class="sw" style="background:${c}"></span>${l}</button>`).join('')}</div></div>
+    <div class="chart-box"></div>
+    <p class="cap">Shaded fans are the council's forecast: for each horizon, the range with a 70% chance of holding the price, widening as time passes. ▲ and ▼ mark the bull and bear advocates' prices from the debate. History from ${esc(P.source || 'IBKR')}.</p></section>`);
+  const box = p.querySelector('.chart-box');
+  const hist = P.history.map(([d, c]) => [new Date(d), c]);
+  const t0 = new Date(M.asof.slice(0, 10)), t1 = new Date(F.year.date);
+  const W = 960, H = 340, L = 56, R = 170, T = 24, B = 34;
+  const xs = hist[0][0].getTime(), xe = t1.getTime();
+  const x = (t) => L + (t.getTime() - xs) / (xe - xs) * (W - L - R);
+  const vals = hist.map(h => h[1]).concat([F.year.lo, F.year.hi, P.bull_price, P.bear_price]);
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.06; lo -= pad; hi += pad;
+  const y = (v) => T + (hi - v) / (hi - lo) * (H - T - B);
+  const step = Math.pow(10, Math.floor(Math.log10((hi - lo) / 4)));
+  const tick = [1, 2, 2.5, 5, 10].map(m => m * step).find(s => (hi - lo) / s <= 6);
+  const grid = []; for (let v = Math.ceil(lo / tick) * tick; v <= hi; v += tick) grid.push(v);
+  const months = []; const m0 = new Date(xs); m0.setDate(1);
+  for (let d = new Date(m0.getFullYear(), m0.getMonth() + 1, 1); d <= t1; d.setMonth(d.getMonth() + 3)) months.push(new Date(d));
+  const line = hist.map((h, i) => `${i ? 'L' : 'M'}${x(h[0]).toFixed(1)},${y(h[1]).toFixed(1)}`).join('');
+  const area = line + `L${x(hist.at(-1)[0])},${H - B}L${x(hist[0][0])},${H - B}Z`;
+  const fanPath = (f) => { // sqrt(t) widening from today
+    const n = 24, up = [], dn = [], mid = [];
+    const span = new Date(f.date) - t0;
+    for (let i = 0; i <= n; i++) {
+      const fr = i / n, t = new Date(t0.getTime() + span * fr), s = Math.sqrt(fr);
+      const m = M.price * Math.pow(f.mid / M.price, fr);
+      up.push([x(t), y(m * Math.pow(f.hi / f.mid, s))]); dn.push([x(t), y(m * Math.pow(f.lo / f.mid, s))]); mid.push([x(t), y(m)]);
+    }
+    const pth = (a) => a.map((q, i) => `${i ? 'L' : 'M'}${q[0].toFixed(1)},${q[1].toFixed(1)}`).join('');
+    return { band: pth(up) + dn.reverse().map(q => `L${q[0].toFixed(1)},${q[1].toFixed(1)}`).join('') + 'Z', up: pth(up), dn: pth(dn.reverse()), mid: pth(mid) };
+  };
+  const render = (sel) => {
+    const fanSvg = HZ.slice().reverse().map(([k, , c]) => {
+      const f = fanPath(F[k]), on = k === sel;
+      return `<g opacity="${on ? 1 : .35}"><path d="${f.band}" fill="${c}" fill-opacity="${on ? .16 : .07}"/>
+        <path d="${f.up}" fill="none" stroke="${c}" stroke-dasharray="5 4" stroke-width="1.3"/>
+        <path d="${f.dn}" fill="none" stroke="${c}" stroke-dasharray="5 4" stroke-width="1.3"/>
+        <path d="${f.mid}" fill="none" stroke="${c}" stroke-dasharray="2 4" stroke-width="2"/></g>`;
+    }).join('');
+    const f = F[sel], c = HZ.find(h => h[0] === sel)[2], xe2 = x(new Date(f.date));
+    // right-hand labels, nudged apart
+    let labs = [
+      { v: P.bull_price, t: `▲ ${px(P.bull_price, 0)}`, c: 'var(--up)', note: 'bull advocate' },
+      { v: f.hi, t: `Bull ${px(f.hi, 0)}`, c },
+      { v: f.mid, t: `Likely ${px(f.mid, 0)}`, c, fill: true },
+      { v: f.lo, t: `Bear ${px(f.lo, 0)}`, c },
+      { v: P.bear_price, t: `▼ ${px(P.bear_price, 0)}`, c: 'var(--down)', note: 'bear advocate' },
+    ].sort((a, b) => b.v - a.v).map(l => ({ ...l, yy: y(l.v) }));
+    for (let i = 1; i < labs.length; i++) if (labs[i].yy - labs[i - 1].yy < 22) labs[i].yy = labs[i - 1].yy + 22;
+    const lx = W - R + 18;
+    const labSvg = labs.map(l => `<g><rect x="${lx}" y="${l.yy - 10}" width="${l.note ? 76 : 98}" height="20" rx="6" fill="${l.fill ? c : 'var(--panel)'}" fill-opacity="${l.fill ? .9 : 1}" stroke="${l.c}"/>
+      <text x="${lx + 8}" y="${l.yy + 4}" font-size="11.5" font-family="var(--f-mono)" fill="${l.fill ? 'var(--bg)' : l.c}" font-weight="600">${l.t}</text></g>`).join('');
+    box.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Price history with forecast bands">
+      <defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--up)" stop-opacity=".22"/><stop offset="1" stop-color="var(--up)" stop-opacity="0"/></linearGradient></defs>
+      ${grid.map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--f-mono)">${CUR}${v.toFixed(tick < 1 ? 1 : 0)}</text>`).join('')}
+      ${months.map(d => `<text x="${x(d)}" y="${H - 12}" text-anchor="middle" font-size="11" fill="var(--muted)">${d.toLocaleDateString('en-GB', { month: 'short', year: '2-digit' })}</text>`).join('')}
+      <path d="${area}" fill="url(#ar)"/><path d="${line}" fill="none" stroke="var(--up)" stroke-width="2"/>
+      ${fanSvg}
+      <line x1="${x(t0)}" x2="${x(t0)}" y1="${T - 6}" y2="${H - B}" stroke="var(--muted)" stroke-dasharray="2 3"/>
+      <rect x="${x(t0) - 42}" y="${T - 20}" width="84" height="18" rx="9" fill="var(--fg)"/><text x="${x(t0)}" y="${T - 7}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--bg)">Run ${px(M.price, 0)}</text>
+      <circle cx="${x(t0)}" cy="${y(M.price)}" r="5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/>
+      <line x1="${xe2}" x2="${lx - 4}" y1="${y(f.mid)}" y2="${labs.find(l => l.fill).yy}" stroke="${c}" stroke-opacity=".5"/>
+      <text x="${xe2}" y="${y(f.hi) - 8}" text-anchor="end" font-size="11" fill="${c}">${px(f.lo, 0)}–${px(f.hi, 0)} by ${new Date(f.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</text>
+      ${labSvg}</svg>`;
+  };
+  p.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+    p.querySelectorAll('.seg button').forEach(o => o.setAttribute('aria-pressed', o === b)); render(b.dataset.k);
+  }));
+  render('year');
+  app.append(p);
+})();
+
+/* ---------- Seats ---------- */
+(function seatsPanel() {
+  const p = $(`<section class="panel"><div class="panel-head"><h2>Seats</h2><span class="hint">Open a seat for its full reasoning and numbers</span></div><div class="seats"></div></section>`);
+  const g = p.querySelector('.seats');
+  D.seats.forEach((s, i) => {
+    const yr = s.votes.year.vote;
+    const card = $(`<article class="seat">
+      <h3><span class="sw" style="background:var(--${yr})"></span>${esc(s.name)}</h3>
+      <div class="chips">${HZ.map(([k, l]) => { const v = s.votes[k].vote; return `<span class="chip ${v}"><span class="k">${l}</span><span class="${v}">${arrow[v]} ${v}</span></span>`; }).join('')}</div>
+      <p class="sum">${esc(s.summary)}</p>
+      <div class="detail"><div class="feed">Reads: ${esc(s.feed || '')}</div>${(s.detail || []).map(d => `<p>• ${esc(d)}</p>`).join('')}</div>
+      <button aria-expanded="false" aria-controls="seat${i}">Show reasoning</button></article>`);
+    card.querySelector('button').addEventListener('click', (e) => {
+      const o = card.classList.toggle('open'); e.target.setAttribute('aria-expanded', o); e.target.textContent = o ? 'Hide reasoning' : 'Show reasoning';
+    });
+    g.append(card);
+  });
+  app.append(p);
+})();
+
+/* ---------- Debate ---------- */
+(function debatePanel() {
+  const d = D.debate; if (!d) return;
+  const li = (a) => `<ul>${a.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`;
+  app.append($(`<section class="panel"><div class="panel-head"><h2>The debate</h2><span class="hint">Bull and bear argue, the challenger probes, the judge rules</span></div>
+    <div class="debate">
+      <div class="side bull"><h3><span>Bull case</span><span class="mono up">${px(D.price.bull_price, 0)}</span></h3>${li(d.bull)}</div>
+      <div class="side bear"><h3><span>Bear case</span><span class="mono down">${px(D.price.bear_price, 0)}</span></h3>${li(d.bear)}</div>
+      <div class="side chal"><h3><span>Challenger</span></h3>${li(d.challenger)}</div>
+      <div class="side judge"><h3><span>Verdict</span><span class="mono">${D.call.rating}</span></h3><p>${esc(d.verdict)}</p></div>
+    </div></section>`));
+})();
+
+/* ---------- Business check ---------- */
+(function bizPanel() {
+  const b = D.business, g = b.growth, pi = b.priced_in;
+  const st = { 'Speeding up': 'good', 'Steady': 'warn', 'Slowing': 'bad' }[g.state];
+  const mx = Math.max(...g.bars.map(v => Math.abs(v.value)), 0.01);
+  const BW = 460, BH = 170, bw = BW / g.bars.length;
+  const bars = g.bars.map((v, i) => { const h = Math.abs(v.value) / mx * (BH - 40), last = i === g.bars.length - 1;
+    return `<rect x="${i * bw + bw * .2}" y="${BH - 22 - h}" width="${bw * .6}" height="${h}" rx="3" fill="var(--${v.value >= 0 ? 'up' : 'down'})" fill-opacity="${last ? 1 : .55}"/>
+      <text x="${i * bw + bw / 2}" y="${BH - 26 - h}" text-anchor="middle" font-size="12" font-family="var(--f-mono)" fill="var(--fg)">${pct(v.value, 0)}</text>
+      <text x="${i * bw + bw / 2}" y="${BH - 6}" text-anchor="middle" font-size="11.5" fill="var(--muted)">${esc(v.label)}</text>`; }).join('');
+  const piState = pi.score < 45 ? 'good' : pi.score < 70 ? 'warn' : 'bad';
+  const om = b.op_margin, fc = b.fcf;
+  app.append($(`<section class="panel"><div class="panel-head"><h2>Business check</h2><span class="hint">Is the business improving, and how much of that is already in the price?</span></div>
+    <div class="biz">
+      <div style="min-width:0">
+        <div class="panel-head" style="margin-bottom:6px"><span class="eyebrow">Growth</span><span class="pill ${st}">${g.state}</span></div>
+        <div><span class="big-growth">${pct(g.latest_yoy, 0)}</span> <span class="muted">revenue vs a year ago, after ${pct(g.last_fy, 0)} over the last full year</span></div>
+        <svg viewBox="0 0 ${BW} ${BH}" style="width:100%;height:auto;margin:10px 0" role="img" aria-label="Revenue growth by period">${bars}<line x1="0" x2="${BW}" y1="${BH - 22}" y2="${BH - 22}" stroke="var(--line)"/></svg>
+        <div class="kv"><span>Operating margin</span><span class="v ${om.to >= om.from ? 'good' : 'warn'}">${om.to >= om.from ? 'widening' : 'narrowing'} · ${pct(om.from, 0, false)} → ${pct(om.to, 0, false)}</span></div>
+        <div class="kv"><span>Free cash flow</span><span class="v ${fc.yoy > 0.05 ? 'good' : fc.yoy < -0.05 ? 'bad' : 'warn'}">${fc.yoy > 0.05 ? 'growing' : fc.yoy < -0.05 ? 'shrinking' : 'flat'} · ${pct(fc.yoy, 0)} vs a year ago</span></div>
+        <div class="kv"><span>SBC-adjusted FCF margin</span><span class="v">${pct(fc.sbc_adj_margin, 1, false)}</span></div>
+      </div>
+      <div style="min-width:0">
+        <div class="panel-head" style="margin-bottom:6px"><span class="eyebrow">Priced in?</span><span class="pill ${piState}">${pi.label} · ${pi.score}/100</span></div>
+        <div class="gauge"><span class="mk" style="left:${pi.score}%"></span></div>
+        <div class="gauge-ax"><span>Cheap</span><span>Fair</span><span>Priced for perfection</span></div>
+        ${pi.rows.map(r => `<div class="kv"><span>${esc(r.label)}</span><span class="v ${r.state}">${esc(r.value)}</span></div>`).join('')}
+      </div>
+    </div>
+    <p class="cap">The priced-in score averages five readings, each scaled 0–100: PEG, the growth the price implies (reverse DCF) against consensus, price move against estimate revisions over 3 months, room to the analyst target, and room to our fair value. It informs the call; it does not move the council.</p></section>`));
+})();
+
+/* ---------- Valuation ---------- */
+(function valuationPanel() {
+  const V = D.valuation, ff = D.football;
+  const lo = Math.min(...ff.map(r => r.lo), M.price) * 0.92, hi = Math.max(...ff.map(r => r.hi), M.price) * 1.05;
+  const W = 900, rowH = 30, L = 170, R = 20, H = ff.length * rowH + 40;
+  const x = (v) => L + (v - lo) / (hi - lo) * (W - L - R);
+  const ffSvg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Valuation range by method">
+    ${ff.map((r, i) => `<text x="${L - 10}" y="${i * rowH + 24}" text-anchor="end" font-size="12" fill="var(--fg)">${esc(r.method)}</text>
+      <rect x="${x(r.lo)}" y="${i * rowH + 10}" width="${Math.max(3, x(r.hi) - x(r.lo))}" height="18" rx="4" fill="var(--${r.kind || 'accent'})" fill-opacity=".75"/>
+      <text x="${x(r.hi) + 6}" y="${i * rowH + 24}" font-size="11" font-family="var(--f-mono)" fill="var(--muted)">${px(r.lo, 0)}–${px(r.hi, 0)}</text>`).join('')}
+    <line x1="${x(M.price)}" x2="${x(M.price)}" y1="4" y2="${H - 24}" stroke="var(--fg)" stroke-width="2"/>
+    <text x="${x(M.price)}" y="${H - 8}" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--fg)">Price ${px(M.price, 0)}</text>
+    <line x1="${x(V.blended_fair_value)}" x2="${x(V.blended_fair_value)}" y1="4" y2="${H - 24}" stroke="var(--accent)" stroke-dasharray="4 3" stroke-width="2"/>
+    <text x="${x(V.blended_fair_value)}" y="${H - 8}" text-anchor="${V.blended_fair_value > M.price ? 'start' : 'end'}" dx="${V.blended_fair_value > M.price ? 6 : -6}" font-size="11.5" fill="var(--accent)">Fair ${px(V.blended_fair_value, 0)}</text></svg>`;
+  const sc = ['bear', 'base', 'bull'];
+  const S = D.scenarios || {};
+  const dcfRows = [['Revenue CAGR (5y)', k => pct(S[k]?.cagr, 1, false)], ['Final-year FCF margin', k => pct(S[k]?.margin, 1, false)],
+    ['Terminal growth', k => pct(S[k]?.tg, 1, false)], ['Probability', k => pct(S[k]?.prob, 0, false)],
+    ['Value / share', k => px(V.dcf[k].per_share)], ['Terminal value % of EV', k => pct(V.dcf[k].tv_share_of_ev, 0, false)]];
+  const grid = V.sensitivity_base_per_share, gk = Object.keys(grid), ck = Object.keys(grid[gk[0]]);
+  const heat = (v) => { const r = Math.max(-1, Math.min(1, v / M.price - 1)); return r >= 0 ? `background:color-mix(in srgb, var(--up) ${Math.round(r * 60)}%, transparent)` : `background:color-mix(in srgb, var(--down) ${Math.round(-r * 60)}%, transparent)`; };
+  const comps = D.comps || [];
+  const f1 = (v, s = 'x') => v == null ? '–' : v.toFixed(1) + s;
+  const mult = Object.entries(V.multiples || {});
+  app.append($(`<section class="panel"><div class="panel-head"><h2>Valuation</h2>
+    <span class="hint mono">WACC ${pct(V.wacc, 1, false)} · Ke ${pct(V.cost_of_equity, 1, false)} · price implies ${pct(V.reverse_dcf_implied_5y_rev_cagr, 1, false)} 5y revenue CAGR</span></div>
+    <div class="chart-box">${ffSvg}</div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="tbl"><div class="eyebrow" style="margin-bottom:6px">DCF scenarios</div><table><thead><tr><th></th>${sc.map(k => `<th>${k}</th>`).join('')}</tr></thead>
+        <tbody>${dcfRows.map(([l, f]) => `<tr><td>${l}</td>${sc.map(k => `<td>${f(k)}</td>`).join('')}</tr>`).join('')}
+        <tr class="subject"><td>Probability-weighted</td><td colspan="3">${px(V.prob_weighted_dcf)}</td></tr></tbody></table></div>
+      <div class="tbl heat"><div class="eyebrow" style="margin-bottom:6px">Base DCF sensitivity: WACC ↓ × terminal growth →</div><table><thead><tr><th></th>${ck.map(c => `<th>${pct(+c.split('=')[1], 1, false)}</th>`).join('')}</tr></thead>
+        <tbody>${gk.map(r => `<tr><td>${pct(+r.split('=')[1], 1, false)}</td>${ck.map(c => `<td class="hc" style="${heat(grid[r][c])}">${px(grid[r][c], 0)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    </div>
+    <div class="tbl" style="margin-top:18px"><div class="eyebrow" style="margin-bottom:6px">Relative valuation vs peers</div><table>
+      <thead><tr><th>Company</th><th>P/E fwd</th><th>EV/EBITDA fwd</th><th>EV/Sales fwd</th><th>P/FCF</th><th>Rev growth</th><th>Op margin</th><th>ROIC</th></tr></thead>
+      <tbody>${comps.map(c => `<tr class="${c.subject ? 'subject' : ''}"><td>${esc(c.ticker)}</td><td>${f1(c.pe_fwd)}</td><td>${f1(c.ev_ebitda_fwd)}</td><td>${f1(c.ev_sales_fwd)}</td><td>${f1(c.p_fcf)}</td><td>${pct(c.growth, 0, false)}</td><td>${pct(c.op_margin, 0, false)}</td><td>${pct(c.roic, 0, false)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="tbl" style="margin-top:14px"><table><thead><tr><th>Method</th><th>Peer median</th><th>Implied value</th><th>vs price</th></tr></thead>
+      <tbody>${mult.map(([k, v]) => `<tr><td>${k}</td><td>${f1(v.peer_median)}</td><td>${px(v.implied)}</td><td class="${cls(v.implied / M.price - 1)}">${pct(v.implied / M.price - 1)}</td></tr>`).join('')}
+      <tr class="subject"><td>Blended fair value (DCF ${Math.round((D.weights?.dcf ?? .5) * 100)}% / multiples ${Math.round((D.weights?.multiples ?? .5) * 100)}%)</td><td></td><td>${px(V.blended_fair_value)}</td><td class="${cls(V.upside)}">${pct(V.upside)}</td></tr></tbody></table></div>
+    ${D.valuation_note ? `<p class="cap">${esc(D.valuation_note)}</p>` : ''}</section>`));
+})();
+
+/* ---------- The books ---------- */
+(function booksPanel() {
+  const F = D.financials; if (!F) return;
+  const fmt = (v, f) => v == null ? '–' : f === 'pct' ? pct(v, 1, false) : f === 'x' ? v.toFixed(1) + 'x' : f === 'ps' ? px(v) : Number(v).toLocaleString('en-GB', { maximumFractionDigits: 0 });
+  app.append($(`<section class="panel"><div class="panel-head"><h2>The books</h2><span class="hint">${esc(F.unit || '')}</span></div>
+    <div class="tbl"><table><thead><tr><th></th>${F.years.map(y => `<th>${esc(y)}</th>`).join('')}</tr></thead>
+      <tbody>${F.rows.map(r => r.section ? `<tr><td colspan="${F.years.length + 1}" class="eyebrow" style="padding-top:14px">${esc(r.section)}</td></tr>` : `<tr><td>${esc(r.label)}</td>${r.values.map(v => `<td>${fmt(v, r.fmt)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="tbl"><div class="eyebrow" style="margin-bottom:6px">Ratios</div><table><thead><tr><th></th><th>Company</th><th>Peer median</th></tr></thead>
+        <tbody>${(D.ratios || []).map(r => `<tr><td>${esc(r.label)}</td><td>${esc(r.value)}</td><td>${esc(r.peer ?? '–')}</td></tr>`).join('')}</tbody></table></div>
+      <div class="tbl"><div class="eyebrow" style="margin-bottom:6px">Health checks</div><table><thead><tr><th></th><th>Score</th><th style="text-align:left">Read</th></tr></thead>
+        <tbody>${(D.health || []).map(r => `<tr><td>${esc(r.label)}</td><td>${esc(r.value)}</td><td style="text-align:left;font-family:var(--f-body)">${esc(r.note)}</td></tr>`).join('')}</tbody></table></div>
+    </div></section>`));
+})();
+
+/* ---------- Risks, catalysts, sources ---------- */
+(function tail() {
+  const R = D.risks || [], C = D.catalysts || [];
+  const lvl = (v) => `<span class="pill ${v === 'High' ? 'bad' : v === 'Med' ? 'warn' : 'good'}">${v}</span>`;
+  app.append($(`<section class="panel"><div class="grid2">
+    <div class="tbl"><h2 style="margin-bottom:10px">Risks</h2><table><thead><tr><th>Risk</th><th>Prob.</th><th>Impact</th></tr></thead>
+      <tbody>${R.map(r => `<tr><td style="white-space:normal">${esc(r.risk)}</td><td>${lvl(r.prob)}</td><td>${lvl(r.impact)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="tbl"><h2 style="margin-bottom:10px">Catalysts</h2><table><thead><tr><th>Date</th><th style="text-align:left">Event</th></tr></thead>
+      <tbody>${C.map(c => `<tr><td>${esc(c.date)}</td><td style="text-align:left;white-space:normal;font-family:var(--f-body)">${esc(c.event)}</td></tr>`).join('')}</tbody></table></div>
+    </div>
+    ${D.change_my_mind ? `<p class="cap"><strong>What would change the call:</strong> ${esc(D.change_my_mind)}</p>` : ''}</section>`));
+  app.append($(`<section class="panel foot"><h2 style="margin-bottom:10px;color:var(--fg)">Sources</h2>
+    <ol class="src">${(D.sources || []).map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a></li>`).join('')}</ol>
+    <p style="margin-top:14px">Call ID ${esc(M.ticker)}-${esc(M.asof.slice(0, 10))} is logged and will be scored at 1 week, 3 months and 1 year. Analysis, not personalised financial advice.</p></section>`));
+})();
+</script>
