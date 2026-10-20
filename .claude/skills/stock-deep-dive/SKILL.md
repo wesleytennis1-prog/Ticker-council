@@ -103,10 +103,12 @@ price on each due date from IBKR, `ledger.py score <id> <horizon> <price>`, then
 ## 3. Rating rule
 
 Blended fair value = DCF (prob-weighted) and multiples, default 50/50 (state any change and why).
-- BUY: upside ≥ 15%
-- HOLD: -10% < upside < 15%
-- SELL: upside ≤ -10%
-Override only with a stated reason (e.g. balance-sheet risk, broken thesis, momentum regime). Give a 12-month price target and a "good entry" price (fair value with 20% margin of safety).
+12-month target = fair value x (1 + cost of equity) - next-12m dividend (engine field `target_12m`; pass `dps`).
+Rate on upside to the 12-month target:
+- BUY: ≥ 15%
+- HOLD: between -10% and 15%
+- SELL: ≤ -10%
+Override only with a stated reason (e.g. balance-sheet risk, broken thesis, momentum regime). Report both intrinsic value (today) and the 12-month target, plus a "good entry" price (fair value with 20% margin of safety).
 
 ## 4. Output
 

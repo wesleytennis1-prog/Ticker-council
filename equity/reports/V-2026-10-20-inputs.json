@@ -1,0 +1,96 @@
+{
+ "ticker": "V",
+ "price": 407.16,
+ "shares_diluted": 1835,
+ "net_debt": 10450,
+ "tax_rate": 0.185,
+ "rf": 0.0513,
+ "erp": 0.045,
+ "beta": 0.85,
+ "pre_tax_cost_of_debt": 0.052,
+ "debt_weight": 0.03,
+ "base_revenue": 45800,
+ "base_fcf_margin": 0.53,
+ "scenarios": {
+  "bear": {
+   "growth": [
+    0.07,
+    0.06,
+    0.06,
+    0.05,
+    0.05
+   ],
+   "fcf_margin": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "terminal_growth": 0.03,
+   "prob": 0.25
+  },
+  "base": {
+   "growth": [
+    0.11,
+    0.105,
+    0.1,
+    0.095,
+    0.09
+   ],
+   "fcf_margin": [
+    0.52,
+    0.525,
+    0.53,
+    0.53,
+    0.535
+   ],
+   "terminal_growth": 0.035,
+   "prob": 0.5
+  },
+  "bull": {
+   "growth": [
+    0.13,
+    0.125,
+    0.12,
+    0.115,
+    0.11
+   ],
+   "fcf_margin": [
+    0.53,
+    0.54,
+    0.545,
+    0.55,
+    0.555
+   ],
+   "terminal_growth": 0.04,
+   "prob": 0.25
+  }
+ },
+ "peers": [
+  {
+   "ticker": "MA",
+   "pe_fwd": 28.91,
+   "ev_ebitda_fwd": 24.9,
+   "p_fcf": 32.33
+  },
+  {
+   "ticker": "SPGI",
+   "pe_fwd": 22.78,
+   "ev_ebitda_fwd": 17.19,
+   "p_fcf": 23.03
+  },
+  {
+   "ticker": "MCO",
+   "pe_fwd": 27.36,
+   "ev_ebitda_fwd": 22.06,
+   "p_fcf": 28.08
+  }
+ ],
+ "subject_metrics": {
+  "eps_fwd": 14.47,
+  "ebitda_fwd": 31090,
+  "fcf_per_share": 12.0
+ },
+ "dps": 2.9
+}

@@ -13,7 +13,10 @@ inputs.json fields (USD millions unless noted, per-share in USD):
               terminal_growth, prob}},
   peers: [{ticker, pe_fwd, ev_ebitda_fwd, ev_sales_fwd, p_fcf, peg (opt)}],
   subject_metrics: {eps_fwd, ebitda_fwd, sales_fwd, fcf_per_share},
-  weights (opt): {dcf: 0.5, multiples: 0.5}
+  weights (opt): {dcf: 0.5, multiples: 0.5}, dps (opt, next-12m dividend per share)
+
+The rating uses the 12-month target: today's blended fair value rolled forward one year
+at the cost of equity, less the dividend paid. Fair value alone is shown as intrinsic value.
 """
 import json
 import statistics
@@ -119,6 +122,8 @@ def main(path):
     w = i.get("weights", {"dcf": 0.5, "multiples": 0.5})
     blended = prob_dcf if mult_val is None else w["dcf"] * prob_dcf + w["multiples"] * mult_val
     upside = blended / i["price"] - 1
+    target = blended * (1 + ke) - i.get("dps", 0)
+    t_up = target / i["price"] - 1
 
     print(json.dumps({
         "ticker": i["ticker"],
@@ -132,7 +137,9 @@ def main(path):
         "multiples_fair_value": None if mult_val is None else round(mult_val, 2),
         "blended_fair_value": round(blended, 2),
         "upside": round(upside, 4),
-        "rating": rating(upside),
+        "target_12m": round(target, 2),
+        "target_upside": round(t_up, 4),
+        "rating": rating(t_up),
     }, indent=2))
 
 
