@@ -410,6 +410,15 @@ const app = document.getElementById('app');
     </div></section>`));
 })();
 
+/* ---------- Extra analyses (e.g. options) ---------- */
+(D.extra || []).forEach(x => {
+  app.append($(`<section class="panel"><div class="panel-head"><h2>${esc(x.title)}</h2><span class="hint">${esc(x.hint || '')}</span></div>
+    ${x.lead ? `<p style="margin:0 0 12px;max-width:75ch">${esc(x.lead)}</p>` : ''}
+    <div class="tbl"><table><thead><tr>${x.columns.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead>
+      <tbody>${x.rows.map(r => `<tr class="${r.highlight ? 'subject' : ''}">${r.cells.map(c => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    ${(x.notes || []).map(n => `<p class="cap">${esc(n)}</p>`).join('')}</section>`));
+});
+
 /* ---------- Risks, catalysts, sources ---------- */
 (function tail() {
   const R = D.risks || [], C = D.catalysts || [];

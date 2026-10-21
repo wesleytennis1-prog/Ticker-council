@@ -1,0 +1,2203 @@
+{
+ "meta": {
+  "ticker": "GOOGL",
+  "name": "Alphabet Inc. (Class A)",
+  "exchange": "NASDAQ",
+  "sector": "Internet \u00b7 Cloud \u00b7 AI",
+  "asof": "2026-10-21",
+  "quote_status": "IBKR REALTIME",
+  "price": 332.48,
+  "change_pct": -0.0229,
+  "sgd_rate": 1.2779,
+  "currency_symbol": "$",
+  "sample": false
+ },
+ "call": {
+  "rating": "HOLD",
+  "target": 305.98,
+  "conviction": "Medium",
+  "thesis": "A great business mid-way through a capex binge: Cloud is growing 82% with a $514bn backlog, but free cash flow went negative and debt doubled. The price implies ~25%/yr revenue growth for five years. Hold; add at or below ~$280."
+ },
+ "position": {
+  "text": "You hold 35 shares at $337.26 (\u2212$167, \u22121.4%), 5.6% of your $207.8k account, or ~8% counting GOOGL inside VWRA, SPYL and CSPX. Hold through earnings. No protective put: one contract covers 100 shares, nearly 3x your position. See the put analysis below."
+ },
+ "seats": [
+  {
+   "name": "Price Chart",
+   "feed": "IBKR 1y daily bars",
+   "votes": {
+    "week": {
+     "score": -0.2,
+     "vote": "down"
+    },
+    "m3": {
+     "score": -0.1,
+     "vote": "even"
+    },
+    "year": {
+     "score": 0.1,
+     "vote": "even"
+    }
+   },
+   "summary": "Below its 20-, 50- and 200-day averages and 19% off the $408 high; the trend has gone sideways since the July capex shock.",
+   "detail": [
+    "Price vs 20dma \u22123.6%, 50dma \u22123.3%, 200dma \u22122.6% (200dma flat at $341)",
+    "1w \u22124.4%, 1m \u22125.3%, 3m +4.7%, 1y +32.1%",
+    "14-day RSI 44; 52-week range $248.79\u2013$408.37",
+    "13-week low $314.90 is the next support"
+   ]
+  },
+  {
+   "name": "Financials",
+   "feed": "Q2 2026 8-K",
+   "votes": {
+    "week": {
+     "score": 0.1,
+     "vote": "even"
+    },
+    "m3": {
+     "score": 0.25,
+     "vote": "up"
+    },
+    "year": {
+     "score": 0.3,
+     "vote": "up"
+    }
+   },
+   "summary": "Revenue +24% and Cloud +82% at a 36% margin, but free cash flow turned negative for the first time as capex hit $45bn in a quarter.",
+   "detail": [
+    "Q2 revenue $119.8bn (+24%); Search +17%, YouTube +13%, Cloud $24.8bn (+82%)",
+    "Operating margin 34%; Cloud operating income $8.8bn",
+    "Q2 FCF \u2212$5.9bn: OCF $39.1bn vs capex $44.9bn; TTM FCF $53.3bn vs $73.3bn in FY25",
+    "GAAP EPS $9.11 includes a $99bn equity gain ($6.26/share); underlying ~$2.85"
+   ]
+  },
+  {
+   "name": "Analyst Targets",
+   "feed": "S&P Global consensus, recent notes",
+   "votes": {
+    "week": {
+     "score": 0.25,
+     "vote": "up"
+    },
+    "m3": {
+     "score": 0.4,
+     "vote": "up"
+    },
+    "year": {
+     "score": 0.45,
+     "vote": "up"
+    }
+   },
+   "summary": "57 of 62 analysts rate it a buy; the $431 average target is 29% above the price.",
+   "detail": [
+    "44 Strong Buy / 13 Buy / 5 Hold / 0 Sell",
+    "Targets $340\u2013$515; mean $430.51, median $430",
+    "October: BMO $480, Evercore $450, Wedbush $445, RBC $425; KeyBanc cut $435 \u2192 $410"
+   ]
+  },
+  {
+   "name": "Earnings Estimates",
+   "feed": "consensus, beat history",
+   "votes": {
+    "week": {
+     "score": 0.3,
+     "vote": "up"
+    },
+    "m3": {
+     "score": 0.3,
+     "vote": "up"
+    },
+    "year": {
+     "score": 0.3,
+     "vote": "up"
+    }
+   },
+   "summary": "Beat EPS in 8 straight quarters, and analysts raised Q3 Cloud estimates ~11% after July.",
+   "detail": [
+    "Q3 consensus: revenue ~$127bn (+24%), EPS $2.93\u2013$3.03",
+    "FY26E revenue $499.6bn (+24%); FY27E $622bn (+24.5%), EPS $15.25 (+16%)",
+    "Q3 Cloud revenue estimates raised 10.9% after Q2"
+   ]
+  },
+  {
+   "name": "Insider Trades",
+   "feed": "SEC Form 4",
+   "votes": {
+    "week": {
+     "score": 0.0,
+     "vote": "even"
+    },
+    "m3": {
+     "score": -0.1,
+     "vote": "even"
+    },
+    "year": {
+     "score": -0.1,
+     "vote": "even"
+    }
+   },
+   "summary": "Routine 10b5-1 selling by the CEO; no buys.",
+   "detail": [
+    "Pichai: recurring 32,500-share Class C sales (e.g. Feb at $303\u2013$305, Mar at ~$306)",
+    "Porat: conversions and tax withholding only",
+    "No open-market purchases found"
+   ]
+  },
+  {
+   "name": "Congress Trades",
+   "feed": "House/Senate PTR disclosures",
+   "votes": {
+    "week": {
+     "score": 0.0,
+     "vote": "even"
+    },
+    "m3": {
+     "score": 0.0,
+     "vote": "even"
+    },
+    "year": {
+     "score": 0.0,
+     "vote": "even"
+    }
+   },
+   "summary": "No recent congressional trades found; no signal.",
+   "detail": [
+    "Search returned no 2026 congressional GOOGL disclosures"
+   ]
+  },
+  {
+   "name": "News",
+   "feed": "last 30 days",
+   "votes": {
+    "week": {
+     "score": -0.15,
+     "vote": "even"
+    },
+    "m3": {
+     "score": -0.1,
+     "vote": "even"
+    },
+    "year": {
+     "score": 0.0,
+     "vote": "even"
+    }
+   },
+   "summary": "Legal noise is negative but contained: a class action over the Gemini 3.5 Pro delay, and a search-remedies appeal in progress.",
+   "detail": [
+    "Securities class action citing a Bloomberg report that Gemini 3.5 Pro is 'months behind'; lead-plaintiff deadline 1 Dec",
+    "1 Oct: Judge Mehta dismissed Chegg and Penske AI-summary suits",
+    "Search remedies (Dec 2025 judgment) under appeal by both Google and the DOJ",
+    "New EU/Poland competition charge"
+   ]
+  },
+  {
+   "name": "SEC Filings",
+   "feed": "10-Q, 8-K",
+   "votes": {
+    "week": {
+     "score": 0.1,
+     "vote": "even"
+    },
+    "m3": {
+     "score": 0.3,
+     "vote": "up"
+    },
+    "year": {
+     "score": 0.35,
+     "vote": "up"
+    }
+   },
+   "summary": "A $514bn Cloud backlog (half due within 24 months) underwrites the capex; $225bn of equity stakes (SpaceX, others) sit off the operating story.",
+   "detail": [
+    "Remaining performance obligations $519.5bn, of which Cloud $513.9bn",
+    "Marketable equity $101.2bn (SpaceX $94.1bn); non-marketable securities $131.5bn",
+    "Long-term debt $98.2bn vs $46.5bn at Dec-25",
+    "No buybacks in H1 2026 (H1 2025: $28.3bn)"
+   ]
+  },
+  {
+   "name": "Institutional Holdings",
+   "feed": "13F, short interest",
+   "votes": {
+    "week": {
+     "score": 0.05,
+     "vote": "even"
+    },
+    "m3": {
+     "score": 0.05,
+     "vote": "even"
+    },
+    "year": {
+     "score": 0.1,
+     "vote": "even"
+    }
+   },
+   "summary": "Widely held, almost no shorts; no flow signal.",
+   "detail": [
+    "Institutional ownership 66.3%, insiders 9.9%",
+    "Short interest 0.74% of float, 2.99 days to cover"
+   ]
+  },
+  {
+   "name": "Options Market",
+   "feed": "IBKR implied vol, volume, chain",
+   "votes": {
+    "week": {
+     "score": -0.15,
+     "vote": "even"
+    },
+    "m3": {
+     "score": 0.0,
+     "vote": "even"
+    },
+    "year": {
+     "score": 0.0,
+     "vote": "even"
+    }
+   },
+   "summary": "Hedging demand is elevated (IV at the 82nd percentile over 13 weeks), but the earnings move is priced fairly against history.",
+   "detail": [
+    "30 Oct straddle \u2248 $21.20 \u2192 \u00b16.4% to expiry; ex-normal vol \u2248 \u00b15.3% for earnings",
+    "Last four earnings-day moves: +10.0%, \u22127.1%, \u22122.0%, +2.5% (avg \u00b15.4%)",
+    "Today put/call 0.50 vs 0.40 average",
+    "Implied vol 36% vs 30-day realised 24%"
+   ]
+  },
+  {
+   "name": "Economy",
+   "feed": "rates, ad cycle, capex funding",
+   "votes": {
+    "week": {
+     "score": -0.15,
+     "vote": "even"
+    },
+    "m3": {
+     "score": -0.15,
+     "vote": "even"
+    },
+    "year": {
+     "score": -0.2,
+     "vote": "down"
+    }
+   },
+   "summary": "A 5.13% 10-year raises the cost of a now debt-funded capex programme; ads are tied to a consumer facing higher rates.",
+   "detail": [
+    "10-year 5.13%, highest since 2002",
+    "Long-term debt doubled in six months to fund capex",
+    "Hyperscaler capex ~$700bn in 2026 and rising; investors are punishing negative FCF"
+   ]
+  },
+  {
+   "name": "Related Markets",
+   "feed": "NVDA, SOXX, hyperscalers",
+   "votes": {
+    "week": {
+     "score": -0.2,
+     "vote": "down"
+    },
+    "m3": {
+     "score": -0.05,
+     "vote": "even"
+    },
+    "year": {
+     "score": 0.1,
+     "vote": "even"
+    }
+   },
+   "summary": "The AI-infrastructure complex is in a pullback (SOXX \u221215% from peak, NVDA \u22128%); Alphabet is being treated as a capex spender, not a beneficiary.",
+   "detail": [
+    "SOXX \u221215% from 6 Oct peak",
+    "NVDA \u22128% from its high",
+    "GOOGL forward P/E 24.9x vs MSFT 26.8x, META 22.3x, AMZN 27.8x"
+   ]
+  }
+ ],
+ "debate": {
+  "bull": [
+   "Cloud +82% at a 36% margin, with a $514bn backlog: the capex has contracted revenue behind it",
+   "Search still grew 17% despite AI-answer fears; 8 straight EPS beats",
+   "$225bn of equity stakes (SpaceX $94bn) plus $122bn net cash \u2248 $28/share of non-operating value",
+   "24.9x forward P/E is in line with MSFT/AMZN despite faster revenue growth"
+  ],
+  "bear": [
+   "Free cash flow went negative; 2026 capex $195\u2013205bn and 2027 'significantly' higher",
+   "Buybacks stopped and long-term debt doubled: shareholder returns are being diverted to data centres",
+   "Gemini 3.5 Pro is reportedly months late; there's a class action and a pending search-remedies appeal",
+   "At 10.4% WACC the price needs ~25%/yr revenue growth for five years"
+  ],
+  "challenger": [
+   "Bull: the backlog is only half recognised within 24 months, and backlog isn't cash if customers (e.g. AI labs) can't pay",
+   "Bear: negative FCF is a choice, not distress. OCF was still $39bn in Q2 and the balance sheet is net cash",
+   "Both: the call turns on the capex return. If Cloud margins hold at 35%+, the DCF's 25% terminal FCF margin is conservative"
+  ],
+  "verdict": "Operations are strong; the stock is being re-rated from cash machine to capex machine. The 12-month target of ~$306 is 8% below the price, inside the Hold band. Keep the 35 shares through Q3 on 28 Oct, skip the protective put, and add only near intrinsic value (~$278\u2013$280)."
+ },
+ "business": {
+  "growth": {
+   "bars": [
+    {
+     "label": "FY2024",
+     "value": 0.1387
+    },
+    {
+     "label": "FY2025",
+     "value": 0.1509
+    },
+    {
+     "label": "Q2 2026",
+     "value": 0.24
+    }
+   ],
+   "latest_yoy": 0.24,
+   "last_fy": 0.1509,
+   "state": "Speeding up"
+  },
+  "op_margin": {
+   "from": 0.3203,
+   "to": 0.3311
+  },
+  "fcf": {
+   "yoy": -0.273,
+   "sbc_adj_margin": 0.063
+  },
+  "peg": 1.86,
+  "expected_growth": 0.18,
+  "price_chg_3m": 0.047,
+  "eps_rev_3m": 0.04,
+  "room_to_target": 0.2948448026948989,
+  "priced_in": {
+   "score": 52,
+   "label": "Fair",
+   "rows": [
+    {
+     "label": "Price vs expected growth (PEG)",
+     "value": "1.9x",
+     "state": "warn"
+    },
+    {
+     "label": "Growth the price assumes",
+     "value": "~25%/yr vs ~18% expected",
+     "state": "warn"
+    },
+    {
+     "label": "Price vs earnings estimates, 3 mo",
+     "value": "+5% vs +4%",
+     "state": "warn"
+    },
+    {
+     "label": "Room to analysts' average target",
+     "value": "+29%",
+     "state": "good"
+    },
+    {
+     "label": "Room to our fair value",
+     "value": "-17%",
+     "state": "bad"
+    }
+   ]
+  }
+ },
+ "price": {
+  "history": [
+   [
+    "2025-10-22",
+    251.69
+   ],
+   [
+    "2025-10-23",
+    253.08
+   ],
+   [
+    "2025-10-24",
+    259.92
+   ],
+   [
+    "2025-10-27",
+    269.27
+   ],
+   [
+    "2025-10-28",
+    267.47
+   ],
+   [
+    "2025-10-29",
+    274.57
+   ],
+   [
+    "2025-10-30",
+    281.48
+   ],
+   [
+    "2025-10-31",
+    281.19
+   ],
+   [
+    "2025-11-03",
+    283.72
+   ],
+   [
+    "2025-11-04",
+    277.54
+   ],
+   [
+    "2025-11-05",
+    284.31
+   ],
+   [
+    "2025-11-06",
+    284.75
+   ],
+   [
+    "2025-11-07",
+    278.83
+   ],
+   [
+    "2025-11-10",
+    290.1
+   ],
+   [
+    "2025-11-11",
+    291.31
+   ],
+   [
+    "2025-11-12",
+    286.71
+   ],
+   [
+    "2025-11-13",
+    278.57
+   ],
+   [
+    "2025-11-14",
+    276.41
+   ],
+   [
+    "2025-11-17",
+    285.02
+   ],
+   [
+    "2025-11-18",
+    284.28
+   ],
+   [
+    "2025-11-19",
+    292.81
+   ],
+   [
+    "2025-11-20",
+    289.45
+   ],
+   [
+    "2025-11-21",
+    299.66
+   ],
+   [
+    "2025-11-24",
+    318.58
+   ],
+   [
+    "2025-11-25",
+    323.44
+   ],
+   [
+    "2025-11-26",
+    319.95
+   ],
+   [
+    "2025-11-28",
+    320.18
+   ],
+   [
+    "2025-12-01",
+    314.89
+   ],
+   [
+    "2025-12-02",
+    315.81
+   ],
+   [
+    "2025-12-03",
+    319.63
+   ],
+   [
+    "2025-12-04",
+    317.62
+   ],
+   [
+    "2025-12-05",
+    321.27
+   ],
+   [
+    "2025-12-08",
+    313.72
+   ],
+   [
+    "2025-12-09",
+    317.08
+   ],
+   [
+    "2025-12-10",
+    320.21
+   ],
+   [
+    "2025-12-11",
+    312.43
+   ],
+   [
+    "2025-12-12",
+    309.29
+   ],
+   [
+    "2025-12-15",
+    308.22
+   ],
+   [
+    "2025-12-16",
+    306.57
+   ],
+   [
+    "2025-12-17",
+    296.72
+   ],
+   [
+    "2025-12-18",
+    302.46
+   ],
+   [
+    "2025-12-19",
+    307.16
+   ],
+   [
+    "2025-12-22",
+    309.78
+   ],
+   [
+    "2025-12-23",
+    314.35
+   ],
+   [
+    "2025-12-24",
+    314.09
+   ],
+   [
+    "2025-12-26",
+    313.51
+   ],
+   [
+    "2025-12-29",
+    313.56
+   ],
+   [
+    "2025-12-30",
+    313.85
+   ],
+   [
+    "2025-12-31",
+    313.0
+   ],
+   [
+    "2026-01-02",
+    315.15
+   ],
+   [
+    "2026-01-05",
+    316.54
+   ],
+   [
+    "2026-01-06",
+    314.34
+   ],
+   [
+    "2026-01-07",
+    321.98
+   ],
+   [
+    "2026-01-08",
+    325.44
+   ],
+   [
+    "2026-01-09",
+    328.57
+   ],
+   [
+    "2026-01-12",
+    331.86
+   ],
+   [
+    "2026-01-13",
+    335.97
+   ],
+   [
+    "2026-01-14",
+    335.84
+   ],
+   [
+    "2026-01-15",
+    332.78
+   ],
+   [
+    "2026-01-16",
+    330.0
+   ],
+   [
+    "2026-01-20",
+    322.0
+   ],
+   [
+    "2026-01-21",
+    328.38
+   ],
+   [
+    "2026-01-22",
+    330.54
+   ],
+   [
+    "2026-01-23",
+    327.93
+   ],
+   [
+    "2026-01-26",
+    333.26
+   ],
+   [
+    "2026-01-27",
+    334.55
+   ],
+   [
+    "2026-01-28",
+    336.01
+   ],
+   [
+    "2026-01-29",
+    338.25
+   ],
+   [
+    "2026-01-30",
+    338.0
+   ],
+   [
+    "2026-02-02",
+    343.69
+   ],
+   [
+    "2026-02-03",
+    339.71
+   ],
+   [
+    "2026-02-04",
+    333.04
+   ],
+   [
+    "2026-02-05",
+    331.25
+   ],
+   [
+    "2026-02-06",
+    322.86
+   ],
+   [
+    "2026-02-09",
+    324.32
+   ],
+   [
+    "2026-02-10",
+    318.58
+   ],
+   [
+    "2026-02-11",
+    310.96
+   ],
+   [
+    "2026-02-12",
+    309.0
+   ],
+   [
+    "2026-02-13",
+    305.72
+   ],
+   [
+    "2026-02-17",
+    302.02
+   ],
+   [
+    "2026-02-18",
+    303.33
+   ],
+   [
+    "2026-02-19",
+    302.85
+   ],
+   [
+    "2026-02-20",
+    314.98
+   ],
+   [
+    "2026-02-23",
+    311.49
+   ],
+   [
+    "2026-02-24",
+    310.9
+   ],
+   [
+    "2026-02-25",
+    312.9
+   ],
+   [
+    "2026-02-26",
+    307.38
+   ],
+   [
+    "2026-02-27",
+    311.76
+   ],
+   [
+    "2026-03-02",
+    306.52
+   ],
+   [
+    "2026-03-03",
+    303.58
+   ],
+   [
+    "2026-03-04",
+    303.13
+   ],
+   [
+    "2026-03-05",
+    300.88
+   ],
+   [
+    "2026-03-06",
+    298.52
+   ],
+   [
+    "2026-03-09",
+    306.36
+   ],
+   [
+    "2026-03-10",
+    307.04
+   ],
+   [
+    "2026-03-11",
+    308.7
+   ],
+   [
+    "2026-03-12",
+    303.55
+   ],
+   [
+    "2026-03-13",
+    302.28
+   ],
+   [
+    "2026-03-16",
+    305.56
+   ],
+   [
+    "2026-03-17",
+    310.92
+   ],
+   [
+    "2026-03-18",
+    307.69
+   ],
+   [
+    "2026-03-19",
+    307.13
+   ],
+   [
+    "2026-03-20",
+    301.0
+   ],
+   [
+    "2026-03-23",
+    302.06
+   ],
+   [
+    "2026-03-24",
+    290.44
+   ],
+   [
+    "2026-03-25",
+    290.93
+   ],
+   [
+    "2026-03-26",
+    280.92
+   ],
+   [
+    "2026-03-27",
+    274.34
+   ],
+   [
+    "2026-03-30",
+    273.5
+   ],
+   [
+    "2026-03-31",
+    287.56
+   ],
+   [
+    "2026-04-01",
+    297.39
+   ],
+   [
+    "2026-04-02",
+    295.77
+   ],
+   [
+    "2026-04-06",
+    299.99
+   ],
+   [
+    "2026-04-07",
+    305.46
+   ],
+   [
+    "2026-04-08",
+    317.32
+   ],
+   [
+    "2026-04-09",
+    318.49
+   ],
+   [
+    "2026-04-10",
+    317.24
+   ],
+   [
+    "2026-04-13",
+    321.31
+   ],
+   [
+    "2026-04-14",
+    332.91
+   ],
+   [
+    "2026-04-15",
+    337.12
+   ],
+   [
+    "2026-04-16",
+    336.02
+   ],
+   [
+    "2026-04-17",
+    341.68
+   ],
+   [
+    "2026-04-20",
+    337.42
+   ],
+   [
+    "2026-04-21",
+    332.29
+   ],
+   [
+    "2026-04-22",
+    339.32
+   ],
+   [
+    "2026-04-23",
+    338.89
+   ],
+   [
+    "2026-04-24",
+    344.4
+   ],
+   [
+    "2026-04-27",
+    350.34
+   ],
+   [
+    "2026-04-28",
+    349.78
+   ],
+   [
+    "2026-04-29",
+    349.94
+   ],
+   [
+    "2026-04-30",
+    384.8
+   ],
+   [
+    "2026-05-01",
+    385.69
+   ],
+   [
+    "2026-05-04",
+    383.25
+   ],
+   [
+    "2026-05-05",
+    388.43
+   ],
+   [
+    "2026-05-06",
+    398.04
+   ],
+   [
+    "2026-05-07",
+    397.99
+   ],
+   [
+    "2026-05-08",
+    400.8
+   ],
+   [
+    "2026-05-11",
+    388.64
+   ],
+   [
+    "2026-05-12",
+    387.35
+   ],
+   [
+    "2026-05-13",
+    402.62
+   ],
+   [
+    "2026-05-14",
+    401.07
+   ],
+   [
+    "2026-05-15",
+    396.78
+   ],
+   [
+    "2026-05-18",
+    396.94
+   ],
+   [
+    "2026-05-19",
+    387.66
+   ],
+   [
+    "2026-05-20",
+    388.91
+   ],
+   [
+    "2026-05-21",
+    387.66
+   ],
+   [
+    "2026-05-22",
+    382.97
+   ],
+   [
+    "2026-05-26",
+    388.88
+   ],
+   [
+    "2026-05-27",
+    388.83
+   ],
+   [
+    "2026-05-28",
+    390.13
+   ],
+   [
+    "2026-05-29",
+    380.34
+   ],
+   [
+    "2026-06-01",
+    376.37
+   ],
+   [
+    "2026-06-02",
+    361.85
+   ],
+   [
+    "2026-06-03",
+    358.99
+   ],
+   [
+    "2026-06-04",
+    372.19
+   ],
+   [
+    "2026-06-05",
+    368.53
+   ],
+   [
+    "2026-06-08",
+    363.31
+   ],
+   [
+    "2026-06-09",
+    364.26
+   ],
+   [
+    "2026-06-10",
+    356.38
+   ],
+   [
+    "2026-06-11",
+    357.77
+   ],
+   [
+    "2026-06-12",
+    359.68
+   ],
+   [
+    "2026-06-15",
+    369.35
+   ],
+   [
+    "2026-06-16",
+    373.25
+   ],
+   [
+    "2026-06-17",
+    363.79
+   ],
+   [
+    "2026-06-18",
+    368.03
+   ],
+   [
+    "2026-06-22",
+    349.68
+   ],
+   [
+    "2026-06-23",
+    346.13
+   ],
+   [
+    "2026-06-24",
+    345.29
+   ],
+   [
+    "2026-06-25",
+    343.71
+   ],
+   [
+    "2026-06-26",
+    337.39
+   ],
+   [
+    "2026-06-29",
+    353.65
+   ],
+   [
+    "2026-06-30",
+    357.37
+   ],
+   [
+    "2026-07-01",
+    361.21
+   ],
+   [
+    "2026-07-02",
+    359.91
+   ],
+   [
+    "2026-07-06",
+    366.46
+   ],
+   [
+    "2026-07-07",
+    367.03
+   ],
+   [
+    "2026-07-08",
+    361.92
+   ],
+   [
+    "2026-07-09",
+    358.89
+   ],
+   [
+    "2026-07-10",
+    357.18
+   ],
+   [
+    "2026-07-13",
+    352.51
+   ],
+   [
+    "2026-07-14",
+    359.51
+   ],
+   [
+    "2026-07-15",
+    370.92
+   ],
+   [
+    "2026-07-16",
+    354.46
+   ],
+   [
+    "2026-07-17",
+    346.77
+   ],
+   [
+    "2026-07-20",
+    351.99
+   ],
+   [
+    "2026-07-21",
+    347.15
+   ],
+   [
+    "2026-07-22",
+    342.09
+   ],
+   [
+    "2026-07-23",
+    317.69
+   ],
+   [
+    "2026-07-24",
+    319.74
+   ],
+   [
+    "2026-07-27",
+    326.56
+   ],
+   [
+    "2026-07-28",
+    333.71
+   ],
+   [
+    "2026-07-29",
+    336.71
+   ],
+   [
+    "2026-07-30",
+    333.66
+   ],
+   [
+    "2026-07-31",
+    356.13
+   ],
+   [
+    "2026-08-03",
+    373.51
+   ],
+   [
+    "2026-08-04",
+    377.65
+   ],
+   [
+    "2026-08-05",
+    362.43
+   ],
+   [
+    "2026-08-06",
+    357.75
+   ],
+   [
+    "2026-08-07",
+    354.3
+   ],
+   [
+    "2026-08-10",
+    357.52
+   ],
+   [
+    "2026-08-11",
+    343.8
+   ],
+   [
+    "2026-08-12",
+    343.54
+   ],
+   [
+    "2026-08-13",
+    346.36
+   ],
+   [
+    "2026-08-14",
+    345.9
+   ],
+   [
+    "2026-08-17",
+    344.0
+   ],
+   [
+    "2026-08-18",
+    344.2
+   ],
+   [
+    "2026-08-19",
+    344.72
+   ],
+   [
+    "2026-08-20",
+    340.67
+   ],
+   [
+    "2026-08-21",
+    344.82
+   ],
+   [
+    "2026-08-24",
+    348.06
+   ],
+   [
+    "2026-08-25",
+    346.96
+   ],
+   [
+    "2026-08-26",
+    342.0
+   ],
+   [
+    "2026-08-27",
+    340.65
+   ],
+   [
+    "2026-08-28",
+    346.59
+   ],
+   [
+    "2026-08-31",
+    339.35
+   ],
+   [
+    "2026-09-01",
+    335.02
+   ],
+   [
+    "2026-09-02",
+    337.12
+   ],
+   [
+    "2026-09-03",
+    342.48
+   ],
+   [
+    "2026-09-04",
+    338.46
+   ],
+   [
+    "2026-09-08",
+    338.36
+   ],
+   [
+    "2026-09-09",
+    330.65
+   ],
+   [
+    "2026-09-10",
+    332.6
+   ],
+   [
+    "2026-09-11",
+    338.5
+   ],
+   [
+    "2026-09-14",
+    349.39
+   ],
+   [
+    "2026-09-15",
+    344.98
+   ],
+   [
+    "2026-09-16",
+    342.87
+   ],
+   [
+    "2026-09-17",
+    347.33
+   ],
+   [
+    "2026-09-18",
+    349.54
+   ],
+   [
+    "2026-09-21",
+    354.97
+   ],
+   [
+    "2026-09-22",
+    351.16
+   ],
+   [
+    "2026-09-23",
+    337.83
+   ],
+   [
+    "2026-09-24",
+    342.36
+   ],
+   [
+    "2026-09-25",
+    343.92
+   ],
+   [
+    "2026-09-28",
+    342.75
+   ],
+   [
+    "2026-09-29",
+    340.92
+   ],
+   [
+    "2026-09-30",
+    344.08
+   ],
+   [
+    "2026-10-01",
+    338.24
+   ],
+   [
+    "2026-10-02",
+    343.5
+   ],
+   [
+    "2026-10-05",
+    346.47
+   ],
+   [
+    "2026-10-06",
+    347.68
+   ],
+   [
+    "2026-10-07",
+    350.5
+   ],
+   [
+    "2026-10-08",
+    348.29
+   ],
+   [
+    "2026-10-09",
+    351.66
+   ],
+   [
+    "2026-10-12",
+    352.72
+   ],
+   [
+    "2026-10-13",
+    353.78
+   ],
+   [
+    "2026-10-14",
+    347.64
+   ],
+   [
+    "2026-10-15",
+    349.22
+   ],
+   [
+    "2026-10-16",
+    340.59
+   ],
+   [
+    "2026-10-19",
+    344.18
+   ],
+   [
+    "2026-10-20",
+    340.27
+   ],
+   [
+    "2026-10-21",
+    332.49
+   ]
+  ],
+  "sigma": 0.356,
+  "source": "IBKR daily closes",
+  "fans": {
+   "week": {
+    "date": "2026-10-28",
+    "lo": 315.21,
+    "mid": 332.02,
+    "hi": 349.72,
+    "sigma": 0.0501
+   },
+   "m3": {
+    "date": "2027-01-20",
+    "lo": 278.71,
+    "mid": 335.15,
+    "hi": 403.02,
+    "sigma": 0.178
+   },
+   "year": {
+    "date": "2027-10-21",
+    "lo": 211.6,
+    "mid": 305.98,
+    "hi": 442.45,
+    "sigma": 0.356
+   }
+  },
+  "bull_price": 343.827,
+  "bear_price": 136.507
+ },
+ "scenarios": {
+  "bear": {
+   "cagr": 0.10317200977463847,
+   "margin": 0.17,
+   "tg": 0.03,
+   "prob": 0.25
+  },
+  "base": {
+   "cagr": 0.1517046952376313,
+   "margin": 0.25,
+   "tg": 0.035,
+   "prob": 0.5
+  },
+  "bull": {
+   "cagr": 0.18040602314839527,
+   "margin": 0.29,
+   "tg": 0.04,
+   "prob": 0.25
+  }
+ },
+ "comps": [
+  {
+   "ticker": "GOOGL",
+   "subject": true,
+   "pe_fwd": 24.94,
+   "ev_ebitda_fwd": 23.33,
+   "ev_sales_fwd": 9.06,
+   "p_fcf": 78.12,
+   "growth": 0.24,
+   "op_margin": 0.331,
+   "roic": 0.249
+  },
+  {
+   "ticker": "MSFT",
+   "pe_fwd": 26.84,
+   "ev_ebitda_fwd": 20.6,
+   "ev_sales_fwd": 12.06,
+   "p_fcf": 58.96,
+   "growth": null,
+   "op_margin": 0.468,
+   "roic": 0.262
+  },
+  {
+   "ticker": "META",
+   "pe_fwd": 22.27,
+   "ev_ebitda_fwd": 16.58,
+   "ev_sales_fwd": 7.97,
+   "p_fcf": 43.83,
+   "growth": null,
+   "op_margin": 0.381,
+   "roic": 0.254
+  },
+  {
+   "ticker": "AMZN",
+   "pe_fwd": 27.8,
+   "ev_ebitda_fwd": 17.53,
+   "ev_sales_fwd": 3.82,
+   "p_fcf": null,
+   "growth": null,
+   "op_margin": 0.121,
+   "roic": 0.119
+  }
+ ],
+ "valuation_note": "Peers: MSFT, META, AMZN. P/FCF is excluded because capex distorts it across the group (AMZN FCF is negative). Forward EPS is $13.33 (price/forward P/E), which excludes equity-stake gains. WACC 10.4% = 5.13% 10y + 1.21 beta x 4.5% ERP. Base revenue FY26E $499.6bn; FCF margins trough at 5% in 2027 then recover to 25% (FY21\u201325 average 22%). Net cash includes $121.7bn cash less debt (SpaceX's marketable stake sits inside it) plus non-marketable stakes at a 50% haircut. The EV/EBITDA multiple uses trailing EBITDA.",
+ "weights": {
+  "dcf": 0.5,
+  "multiples": 0.5
+ },
+ "financials": {
+  "unit": "USD millions, fiscal years to 31 Dec; TTM to 30 Jun 2026",
+  "years": [
+   "FY2021",
+   "FY2022",
+   "FY2023",
+   "FY2024",
+   "FY2025",
+   "TTM"
+  ],
+  "rows": [
+   {
+    "section": "Income statement"
+   },
+   {
+    "label": "Revenue",
+    "values": [
+     257637,
+     282836,
+     307394,
+     350018,
+     402836,
+     445866
+    ]
+   },
+   {
+    "label": "Revenue growth",
+    "fmt": "pct",
+    "values": [
+     0.4115,
+     0.0978,
+     0.0868,
+     0.1387,
+     0.1509,
+     0.2005
+    ]
+   },
+   {
+    "label": "Operating income",
+    "values": [
+     78714,
+     74842,
+     84293,
+     112390,
+     129039,
+     147628
+    ]
+   },
+   {
+    "label": "Operating margin",
+    "fmt": "pct",
+    "values": [
+     0.3055,
+     0.2646,
+     0.2742,
+     0.3211,
+     0.3203,
+     0.3311
+    ]
+   },
+   {
+    "label": "Net income (GAAP)",
+    "values": [
+     76033,
+     59972,
+     73795,
+     100118,
+     132170,
+     244119
+    ]
+   },
+   {
+    "label": "EPS (GAAP)",
+    "fmt": "ps",
+    "values": [
+     5.61,
+     4.56,
+     5.8,
+     8.04,
+     10.8,
+     19.93
+    ]
+   },
+   {
+    "section": "Cash flow"
+   },
+   {
+    "label": "Capex",
+    "values": [
+     -24640,
+     -31485,
+     -32251,
+     -52535,
+     -91447,
+     -132402
+    ]
+   },
+   {
+    "label": "Capex / revenue",
+    "fmt": "pct",
+    "values": [
+     0.0956,
+     0.1113,
+     0.1049,
+     0.1501,
+     0.227,
+     0.297
+    ]
+   },
+   {
+    "label": "Free cash flow",
+    "values": [
+     67012,
+     60010,
+     69495,
+     72764,
+     73266,
+     53273
+    ]
+   },
+   {
+    "label": "FCF margin",
+    "fmt": "pct",
+    "values": [
+     0.2601,
+     0.2122,
+     0.2261,
+     0.2079,
+     0.1819,
+     0.1195
+    ]
+   },
+   {
+    "section": "Balance sheet (30 Jun 2026)"
+   },
+   {
+    "label": "Cash + marketable securities",
+    "values": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     242474
+    ]
+   },
+   {
+    "label": "Non-marketable securities",
+    "values": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     131461
+    ]
+   },
+   {
+    "label": "Long-term debt",
+    "values": [
+     null,
+     null,
+     null,
+     null,
+     46547,
+     98165
+    ]
+   },
+   {
+    "label": "Cloud backlog (RPO)",
+    "values": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     513900
+    ]
+   }
+  ]
+ },
+ "ratios": [
+  {
+   "label": "Operating margin (TTM)",
+   "value": "33.1%",
+   "peer": "38.1%"
+  },
+  {
+   "label": "ROIC",
+   "value": "24.9%",
+   "peer": "25.4%"
+  },
+  {
+   "label": "ROE",
+   "value": "48.7%",
+   "peer": "\u2013"
+  },
+  {
+   "label": "Forward P/E",
+   "value": "24.9x",
+   "peer": "26.8x"
+  },
+  {
+   "label": "EV/EBITDA (TTM)",
+   "value": "23.3x",
+   "peer": "17.5x"
+  },
+  {
+   "label": "P/FCF (TTM)",
+   "value": "78.1x",
+   "peer": "51.4x"
+  },
+  {
+   "label": "PEG",
+   "value": "1.86",
+   "peer": "1.35"
+  },
+  {
+   "label": "Capex / revenue (TTM)",
+   "value": "29.7%",
+   "peer": "\u2013"
+  },
+  {
+   "label": "Net cash",
+   "value": "$121.7bn",
+   "peer": "\u2013"
+  },
+  {
+   "label": "Beta (5y)",
+   "value": "1.21",
+   "peer": "\u2013"
+  }
+ ],
+ "health": [
+  {
+   "label": "Piotroski F-score",
+   "value": "5 / 9",
+   "note": "FCF fell and leverage rose; profitability tests pass"
+  },
+  {
+   "label": "Altman Z",
+   "value": "9.56",
+   "note": "No solvency risk"
+  },
+  {
+   "label": "Earnings quality",
+   "value": "Flag",
+   "note": "TTM net income $244bn includes ~$136bn of equity gains (H1); underlying earnings are ~half"
+  },
+  {
+   "label": "Capex intensity",
+   "value": "30% of revenue",
+   "note": "Up from ~10% in FY21\u201323: the business model is changing"
+  }
+ ],
+ "extra": [
+  {
+   "title": "Put analysis",
+   "hint": "IBKR chain, 21 Oct 2026 intraday \u00b7 1 contract = 100 shares",
+   "lead": "Two ways to use puts: buy one to protect the 35 shares through earnings, or sell one (cash-secured) to get paid while waiting to buy lower. 'Buy cost' uses the ask; 'sell yield' and 'effective entry' use the bid. The highlighted row is the only trade that fits this report's valuation.",
+   "columns": [
+    "Expiry",
+    "Strike",
+    "Bid / ask",
+    "IV",
+    "Delta",
+    "Buy cost (% of your 35 sh)",
+    "Breakeven if bought",
+    "Sell yield, annualised",
+    "Effective entry if assigned"
+   ],
+   "rows": [
+    {
+     "cells": [
+      "30 Oct '26",
+      "$330",
+      "$10.50 / $10.85",
+      "50%",
+      "-0.48",
+      "$1,085 (9.3%)",
+      "$319.15",
+      "129.0%",
+      "$319.50 (-3.9%)"
+     ],
+     "highlight": false
+    },
+    {
+     "cells": [
+      "30 Oct '26",
+      "$320",
+      "$5.30 / $5.50",
+      "50%",
+      "-0.30",
+      "$550 (4.7%)",
+      "$314.50",
+      "67.2%",
+      "$314.70 (-5.3%)"
+     ],
+     "highlight": false
+    },
+    {
+     "cells": [
+      "30 Oct '26",
+      "$310",
+      "$2.71 / $2.85",
+      "51%",
+      "-0.18",
+      "$285 (2.4%)",
+      "$307.15",
+      "35.5%",
+      "$307.29 (-7.6%)"
+     ],
+     "highlight": false
+    },
+    {
+     "cells": [
+      "30 Oct '26",
+      "$300",
+      "$1.34 / $1.40",
+      "52%",
+      "-0.10",
+      "$140 (1.2%)",
+      "$298.60",
+      "18.1%",
+      "$298.66 (-10.2%)"
+     ],
+     "highlight": false
+    },
+    {
+     "cells": [
+      "20 Nov '26",
+      "$315",
+      "$6.60 / $6.90",
+      "37%",
+      "-0.28",
+      "$690 (5.9%)",
+      "$308.10",
+      "25.5%",
+      "$308.40 (-7.2%)"
+     ],
+     "highlight": false
+    },
+    {
+     "cells": [
+      "20 Nov '26",
+      "$300",
+      "$3.20 / $3.35",
+      "39%",
+      "-0.16",
+      "$335 (2.9%)",
+      "$296.65",
+      "13.0%",
+      "$296.80 (-10.7%)"
+     ],
+     "highlight": false
+    },
+    {
+     "cells": [
+      "20 Nov '26",
+      "$290",
+      "$1.91 / $2.00",
+      "40%",
+      "-0.10",
+      "$200 (1.7%)",
+      "$288.00",
+      "8.0%",
+      "$288.09 (-13.4%)"
+     ],
+     "highlight": false
+    },
+    {
+     "cells": [
+      "15 Jan '27",
+      "$310",
+      "$10.30 / $10.60",
+      "33%",
+      "-0.28",
+      "$1,060 (9.1%)",
+      "$299.40",
+      "14.1%",
+      "$299.70 (-9.9%)"
+     ],
+     "highlight": false
+    },
+    {
+     "cells": [
+      "15 Jan '27",
+      "$300",
+      "$7.45 / $7.70",
+      "34%",
+      "-0.22",
+      "$770 (6.6%)",
+      "$292.30",
+      "10.5%",
+      "$292.55 (-12.0%)"
+     ],
+     "highlight": false
+    },
+    {
+     "cells": [
+      "15 Jan '27",
+      "$280",
+      "$3.65 / $3.80",
+      "35%",
+      "-0.12",
+      "$380 (3.3%)",
+      "$276.20",
+      "5.5%",
+      "$276.35 (-16.9%)"
+     ],
+     "highlight": true
+    }
+   ],
+   "notes": [
+    "Protective put: not recommended. One contract hedges 100 shares, so on 35 shares it becomes a bet on a fall. The 30 Oct 310 put costs $285 (2.4% of the position for nine days) and only pays below $307. The \u00b15.3% earnings move priced in matches the \u00b15.4% historical average, so there is no edge in buying.",
+    "Cash-secured put: selling the 15 Jan '27 280 put collects ~$365 and, if assigned, buys 100 shares at an effective $276.35, which is about our $278 intrinsic value. It ties up $28,000 (65% of your $42.8k cash). If assigned, GOOGL becomes ~18% of the account, on top of NVDA, DRAM, SOXX and VST, which are the same AI-capex bet. Only do it if you want that concentration.",
+    "Not recommended: selling 30 Oct or 20 Nov puts. Yields look high (13\u201367% annualised) because they carry the earnings gap, and the effective entries ($297\u2013$315) sit well above fair value."
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "risk": "2027 capex guide rises again without matching Cloud revenue (FCF stays negative)",
+   "prob": "Med",
+   "impact": "High"
+  },
+  {
+   "risk": "Search share loss to AI assistants (ChatGPT, Meta AI) erodes the core profit pool",
+   "prob": "Med",
+   "impact": "High"
+  },
+  {
+   "risk": "Gemini roadmap slips further; class action escalates",
+   "prob": "Med",
+   "impact": "Med"
+  },
+  {
+   "risk": "Search remedies appeal goes against Google; EU fines",
+   "prob": "Low",
+   "impact": "Med"
+  },
+  {
+   "risk": "Mark-to-market losses on SpaceX and AI-lab stakes reverse 2026 gains",
+   "prob": "Med",
+   "impact": "Low"
+  },
+  {
+   "risk": "10-year yield above 5.5% raises funding costs for debt-financed capex",
+   "prob": "Med",
+   "impact": "Med"
+  }
+ ],
+ "catalysts": [
+  {
+   "date": "28 Oct 2026",
+   "event": "Q3 results after the close: Cloud growth, 2027 capex outlook, FCF"
+  },
+  {
+   "date": "Late Oct 2026",
+   "event": "MSFT, META, AMZN results: sector capex read-across"
+  },
+  {
+   "date": "1 Dec 2026",
+   "event": "Lead-plaintiff deadline in the Gemini securities class action"
+  },
+  {
+   "date": "2027",
+   "event": "Search remedies appeal ruling; Gemini 3.5 Pro launch"
+  }
+ ],
+ "change_my_mind": "Upgrade to Buy at or below ~$280, or if Q3 shows FCF back above zero with Cloud margins \u226535% and buybacks restarting. Downgrade to Sell if 2027 capex guidance exceeds ~$260bn without a matching backlog increase, or if Search growth drops below 10%.",
+ "sources": [
+  {
+   "label": "IBKR: GOOGL quote, history, option chain and greeks; your account",
+   "url": "https://www.interactivebrokers.com"
+  },
+  {
+   "label": "Alphabet Q2 2026 earnings release (8-K)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000066/googexhibit991q22026.htm"
+  },
+  {
+   "label": "Alphabet 10-Q, quarter to 30 Jun 2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000071/goog-20260630.htm"
+  },
+  {
+   "label": "StockAnalysis: GOOGL statistics",
+   "url": "https://stockanalysis.com/stocks/googl/statistics/"
+  },
+  {
+   "label": "StockAnalysis: GOOGL financials",
+   "url": "https://stockanalysis.com/stocks/googl/financials/"
+  },
+  {
+   "label": "StockAnalysis: GOOGL forecast",
+   "url": "https://stockanalysis.com/stocks/googl/forecast/"
+  },
+  {
+   "label": "StockAnalysis: MSFT / META / AMZN statistics",
+   "url": "https://stockanalysis.com/stocks/msft/statistics/"
+  },
+  {
+   "label": "MarketBeat: Q3 2026 earnings date and estimates",
+   "url": "https://www.marketbeat.com/earnings/reports/2026-10-28-alphabet-inc-stock/"
+  },
+  {
+   "label": "Yahoo Finance: GOOGL Q3 2026 earnings preview",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/googl-stock-earnings-preview-expect-103510923.html"
+  },
+  {
+   "label": "Plus500: Q3 2026 expectations",
+   "url": "https://us.plus500.com/en/forecasts/alphabet-earnings-expectations"
+  },
+  {
+   "label": "S&P Global: AI growth accelerates as spending weighs on cash flow",
+   "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/07/alphabet-postq-ai-growth-accelerates-as-spending-weighs-on-cash-flow"
+  },
+  {
+   "label": "Republic World: capex hike and Gemini delays",
+   "url": "https://www.republicworld.com/business/alphabet-82-cloud-growth-205-billion-capex-hike-gemini-delays-stock-lower-2026-07-23-133180"
+  },
+  {
+   "label": "Yahoo Finance: won in Washington, charged in Warsaw",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-won-washington-got-charged-144229447.html"
+  },
+  {
+   "label": "Kaplan Fox: class action lead-plaintiff deadline",
+   "url": "https://www.theglobeandmail.com/investing/markets/stocks/GOOGL/pressreleases/8208379/kaplan-fox-continues-to-remind-alphabet-inc-nasdaq-googl-goog-investors-of-the-lead-plaintiff-deadline-on-december-1-2026/"
+  },
+  {
+   "label": "Quantisnow: GOOG insider transactions",
+   "url": "https://quantisnow.com/insiders/GOOG"
+  },
+  {
+   "label": "FactSet: hyperscalers tap external financing",
+   "url": "https://insight.factset.com/hyperscalers-tap-external-financing-as-ai-capex-outruns-cash-flow"
+  }
+ ],
+ "football": [
+  {
+   "method": "DCF bear to bull",
+   "lo": 136.507,
+   "hi": 343.827
+  },
+  {
+   "method": "DCF base, WACC \u00b150bp",
+   "lo": 231.15,
+   "hi": 268.78
+  },
+  {
+   "method": "P/E fwd (peer median)",
+   "lo": 332.732796,
+   "hi": 382.82160400000004,
+   "kind": "m3"
+  },
+  {
+   "method": "EV/EBITDA fwd (peer median)",
+   "lo": 245.0770371218316,
+   "hi": 281.9703545380213,
+   "kind": "m3"
+  },
+  {
+   "method": "FY27E EPS $15.25 x 20\u201326x",
+   "lo": 305.0,
+   "hi": 396.5,
+   "kind": "m3"
+  },
+  {
+   "method": "Analyst targets",
+   "lo": 340,
+   "hi": 515,
+   "kind": "even"
+  },
+  {
+   "method": "52-week range",
+   "lo": 248.79,
+   "hi": 408.37,
+   "kind": "wk"
+  }
+ ],
+ "council": [
+  {
+   "key": "week",
+   "label": "Next week",
+   "scored": "Scored in 7 days",
+   "score": -0.046,
+   "lean": "Even",
+   "sub": "Roughly a coin flip",
+   "agree": 8,
+   "total": 12
+  },
+  {
+   "key": "m3",
+   "label": "Next 3 months",
+   "scored": "Scored in 3 months",
+   "score": 0.075,
+   "lean": "Even",
+   "sub": "Roughly a coin flip",
+   "agree": 8,
+   "total": 12
+  },
+  {
+   "key": "year",
+   "label": "Next year",
+   "scored": "Scored in a year",
+   "score": 0.155,
+   "lean": "Leaning up",
+   "sub": "Slightly more likely to rise",
+   "agree": 4,
+   "total": 12
+  }
+ ],
+ "valuation": {
+  "ticker": "GOOGL",
+  "price": 332.48,
+  "wacc": 0.1038,
+  "cost_of_equity": 0.1057,
+  "after_tax_cost_of_debt": 0.0415,
+  "dcf": {
+   "bear": {
+    "ev": 1482080.369,
+    "equity": 1669480.369,
+    "per_share": 136.507,
+    "tv_share_of_ev": 0.797,
+    "final_rev": 816278.956,
+    "final_fcf": 138767.423
+   },
+   "base": {
+    "ev": 2852706.827,
+    "equity": 3040106.827,
+    "per_share": 248.578,
+    "tv_share_of_ev": 0.814,
+    "final_rev": 1012344.008,
+    "final_fcf": 253086.002
+   },
+   "bull": {
+    "ev": 4017602.305,
+    "equity": 4205002.305,
+    "per_share": 343.827,
+    "tv_share_of_ev": 0.822,
+    "final_rev": 1144931.526,
+    "final_fcf": 332030.143
+   }
+  },
+  "prob_weighted_dcf": 244.37,
+  "reverse_dcf_implied_5y_rev_cagr": 0.2465,
+  "sensitivity_base_per_share": {
+   "wacc=0.094": {
+    "g=0.025": 256.75,
+    "g=0.030": 273.21,
+    "g=0.035": 292.46,
+    "g=0.040": 315.29,
+    "g=0.045": 342.8
+   },
+   "wacc=0.099": {
+    "g=0.025": 238.65,
+    "g=0.030": 252.62,
+    "g=0.035": 268.78,
+    "g=0.040": 287.68,
+    "g=0.045": 310.1
+   },
+   "wacc=0.104": {
+    "g=0.025": 222.88,
+    "g=0.030": 234.86,
+    "g=0.035": 248.58,
+    "g=0.040": 264.45,
+    "g=0.045": 283.01
+   },
+   "wacc=0.109": {
+    "g=0.025": 209.03,
+    "g=0.030": 219.39,
+    "g=0.035": 231.15,
+    "g=0.040": 244.62,
+    "g=0.045": 260.21
+   },
+   "wacc=0.114": {
+    "g=0.025": 196.76,
+    "g=0.030": 205.79,
+    "g=0.035": 215.97,
+    "g=0.040": 227.52,
+    "g=0.045": 240.75
+   }
+  },
+  "multiples": {
+   "P/E fwd": {
+    "peer_median": 26.84,
+    "implied": 357.7772
+   },
+   "EV/EBITDA fwd": {
+    "peer_median": 17.53,
+    "implied": 263.52369582992645
+   }
+  },
+  "multiples_fair_value": 310.65,
+  "blended_fair_value": 277.51,
+  "upside": -0.1653,
+  "target_12m": 305.98,
+  "target_upside": -0.0797,
+  "rating": "HOLD"
+ }
+}

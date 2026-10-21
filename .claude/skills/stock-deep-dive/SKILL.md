@@ -93,6 +93,9 @@ python3 -I equity/valuation.py <TICKER>-<date>-inputs.json > <TICKER>-<date>-val
 python3 -I equity/council.py <TICKER>-<date>-council.json <TICKER>-<date>-valuation.json equity/reports/<TICKER>-<date>.html
 python3 -I equity/ledger.py add equity/reports/<TICKER>-<date>.data.json
 ```
+Optional `extra`: a list of `{title, hint, lead, columns, rows: [{cells, highlight}], notes}` tables rendered
+before Risks; use it for asked-for add-ons such as an options/put analysis (pull the chain from IBKR:
+get_option_parameters, get_option_data, then get_price_snapshot with bid_ask, option_midpoint_iv, option_greeks).
 Publish the HTML as an Artifact (icon "chart"). The template already covers council, fan, seats, debate,
 business check, valuation, books, risks, sources: do not hand-write a separate report page.
 

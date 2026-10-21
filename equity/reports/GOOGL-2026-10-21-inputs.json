@@ -1,0 +1,11 @@
+{"ticker":"GOOGL","price":332.48,"shares_diluted":12230,"net_debt":-187400,"tax_rate":0.17,
+ "rf":0.0513,"erp":0.045,"beta":1.21,"pre_tax_cost_of_debt":0.05,"debt_weight":0.03,
+ "base_revenue":499600,"base_fcf_margin":0.22,"dps":0.88,
+ "scenarios":{
+  "bear":{"growth":[0.18,0.12,0.09,0.07,0.06],"fcf_margin":[0.03,0.08,0.12,0.15,0.17],"terminal_growth":0.03,"prob":0.25},
+  "base":{"growth":[0.245,0.18,0.14,0.11,0.09],"fcf_margin":[0.05,0.12,0.18,0.22,0.25],"terminal_growth":0.035,"prob":0.5},
+  "bull":{"growth":[0.28,0.22,0.17,0.13,0.11],"fcf_margin":[0.08,0.16,0.22,0.26,0.29],"terminal_growth":0.04,"prob":0.25}},
+ "peers":[{"ticker":"MSFT","pe_fwd":26.84,"ev_ebitda_fwd":20.60},
+          {"ticker":"META","pe_fwd":22.27,"ev_ebitda_fwd":16.58},
+          {"ticker":"AMZN","pe_fwd":27.80,"ev_ebitda_fwd":17.53}],
+ "subject_metrics":{"eps_fwd":13.33,"ebitda_fwd":173160}}
