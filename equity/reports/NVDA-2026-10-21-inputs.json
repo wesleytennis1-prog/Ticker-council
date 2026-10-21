@@ -1,0 +1,11 @@
+{"ticker":"NVDA","price":219.25,"shares_diluted":24300,"net_debt":-91600,"tax_rate":0.17,
+ "rf":0.0513,"erp":0.045,"beta":1.6,"pre_tax_cost_of_debt":0.05,"debt_weight":0.01,
+ "base_revenue":411700,"base_fcf_margin":0.46,"dps":1.00,
+ "scenarios":{
+  "bear":{"growth":[0.25,-0.15,-0.10,0.05,0.05],"fcf_margin":[0.45,0.40,0.36,0.35,0.35],"terminal_growth":0.03,"prob":0.25},
+  "base":{"growth":[0.60,0.15,0.05,0.03,0.04],"fcf_margin":[0.48,0.47,0.46,0.45,0.44],"terminal_growth":0.035,"prob":0.5},
+  "bull":{"growth":[0.68,0.25,0.12,0.08,0.06],"fcf_margin":[0.50,0.50,0.49,0.48,0.47],"terminal_growth":0.04,"prob":0.25}},
+ "peers":[{"ticker":"AVGO","pe_fwd":19.28,"ev_ebitda_fwd":31.22,"p_fcf":40.51},
+          {"ticker":"TSM","pe_fwd":19.52,"ev_ebitda_fwd":15.99,"p_fcf":41.88},
+          {"ticker":"AMD","pe_fwd":48.10,"ev_ebitda_fwd":90.37,"p_fcf":103.89}],
+ "subject_metrics":{"eps_fwd":12.25,"ebitda_fwd":201270,"fcf_per_share":5.26}}
