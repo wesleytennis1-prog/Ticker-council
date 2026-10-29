@@ -72,7 +72,8 @@ def council(seats):
             num += w * sc
             den += w
         agg = num / den if den else 0.0
-        side = vote(agg)
+        # Same 0.08 threshold as lean(), so "Leaning down" counts the seats voting down.
+        side = "up" if agg >= 0.08 else "down" if agg <= -0.08 else "even"
         agree = sum(1 for s in seats if s["votes"][key]["vote"] == side)
         text, sub = lean(agg)
         out.append({"key": key, "label": label, "scored": scored, "score": round(agg, 3),

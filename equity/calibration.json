@@ -1,0 +1,38 @@
+{
+ "Price Chart": {
+  "week": 1.231
+ },
+ "Financials": {
+  "week": 0.923
+ },
+ "Analyst Targets": {
+  "week": 0.769
+ },
+ "Earnings Estimates": {
+  "week": 0.769
+ },
+ "Insider Trades": {
+  "week": 1.231
+ },
+ "Congress Trades": {
+  "week": 1.231
+ },
+ "News": {
+  "week": 1.077
+ },
+ "SEC Filings": {
+  "week": 1.231
+ },
+ "Institutional Holdings": {
+  "week": 1.231
+ },
+ "Options Market": {
+  "week": 1.077
+ },
+ "Economy": {
+  "week": 1.231
+ },
+ "Related Markets": {
+  "week": 1.077
+ }
+}
